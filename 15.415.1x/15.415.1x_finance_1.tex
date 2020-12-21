@@ -147,7 +147,24 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Week 1: Introduction}\smallskip \hrule height 1pt \smallskip
 
+\subsection{A Framework for Financial Analysis}
+
+\begin{description}[itemsep=0pt]
+	\item[Income Statement] ~
+	\begin{itemize} 
+	 \item    Source of funds = Use of funds \\
+	  $ NI + \Delta D + \Delta E = I + C + Div + T $ 
+	\item NI: net income
+	\item $\Delta D$ : funds raised from new debt issue
+	\item $\Delta E$ : funds raised from new equity issue
+	\item $I$: investment
+	\item $C$: coupon payment
+	\item $Div$:  dividend payment
+	\item $T$ : tax payment
+	\end{itemize}
+\end{description}
 
 \section{Week 2: Market Prices and Present Value}\smallskip \hrule height 1pt \smallskip
 
@@ -320,7 +337,8 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		\item {\bf Macaulay Duration} is the weighted average term to maturity  $$ D = \sum_{t=1}^{T} \left(   \frac{PV(CF_T)}{B}  t \right)  =   \frac{1}{B}\sum_{t=1}^{T} \left(  \frac{CF_t}{(1+y)^t} t \right)  $$
 		\item {\bf Modified Duration} measures bond's interest rate risk by its relative price change with respect
 		to a unit change in yield (with a negative sign):  $$ MD =  -\frac{1}{B}\frac{dB}{dy}  = \frac{D}{1+y}  $$
-		\item {\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $$ CX =  \frac{1}{2}\frac{1}{B}\frac{d^2B}{dy^2}  $$
+		\item {\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $$ CX =  \frac{1}{2}\frac{1}{B}\frac{d^2B}{dy^2}  $$ \\
+		   $$ CX = \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} \frac{t (t+1) CF_t}{(1+t)^t} =  \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} PV(CF_t) t (t+1)  $$
 		\item {\bf Taylor series approximation of bond price changes}  $$ \Delta B \approx  B \left(  -MD  \cdot \Delta y + CX \cdot ( \Delta y)^2 \right)    $$
 	\end{itemize}
 \end{description}
@@ -350,7 +368,7 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		\item {\bf Investments:} $ I_t = EPS_t \cdot b_t $
 		\item {\bf Next year earnings} $ EPS_{t+1} = EPS_t +ROI_t \cdot I_t $
 		\item {\bf Next year book value:} $ BVPS_{t+1} = BVPS_t + I_{t+1} $
-		\item {\bf Dividedns:} $ D_t = EPS_t (1-b_t) $
+		\item {\bf Dividends:} $ D_t = EPS_t (1-b_t) $
 		
 			
 	\end{itemize}
