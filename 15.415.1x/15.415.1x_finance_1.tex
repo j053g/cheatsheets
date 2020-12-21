@@ -94,15 +94,15 @@
 \setcounter{secnumdepth}{0}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt plus 0.5ex}
+\setlength{\parskip}{0pt plus 0ex}
 
 % -----------------------------------------------------------------------
 
 \usepackage{titlesec}
 
 \titleformat{\section}
-{\color{blue}\normalfont\large\bfseries}
-{\color{blue}\thesection}{1em}{}
+{\color{blue}\normalfont\normalsize\bfseries}
+{\color{blue}\thesection}{0em}{}
 \titleformat{\subsection}
 {\color{violet}\normalfont\normalsize\bfseries}
 {\color{violet}\thesection}{1em}{}
@@ -120,7 +120,7 @@
 \setlength{\premulticols}{1pt}
 \setlength{\postmulticols}{1pt}
 \setlength{\multicolsep}{1pt}
-\setlength{\columnsep}{2pt}
+\setlength{\columnsep}{1pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% TITLE
@@ -162,6 +162,7 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		\item $X$ is a random variable.
 		\item A random payoff is given by the value of	its payoff in each state and the corresponding probability:
 		$[(X_1, \dots, X_N); (p_1, \dots , p_N)] $
+		\item{\bf expected} value : $\sum_{i=1}^{N} p_i X_i$ 
 	\end{itemize}
 	\item[State Prices]~
 	\begin{itemize}
@@ -181,7 +182,7 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		\item With the prices of A-D securities, we can price other assets/securities.
 		\item Law of One Price: Two assets with the same payoff must have the same	market price.
 		\item Suppose the firm is considering a project yielding time-1 cash flow: $X=(X_1, X_2, \dots, X_N)$
-		\item Using prices of A-D securities, we can attach value to this cash flow as: $P = \phi_1 X_1 + \dots +\phi_N X_N = PV $
+		\item Using prices of A-D securities, we can attach {\bf market value} to this cash flow as: $P = \phi_1 X_1 + \dots +\phi_N X_N = PV $
 		\item Example for three assets: riskless bonds pays \$100 in each state currently traded at $B1_0$, stock 1 pays off $[S1_1, S1_2, S1_3]$ and currently traded at $S1_0$, 
 		 stock 2 pays off $[S2_1, S2_2, S2_3]$ and currently traded at $S2_0$:
 		$$
@@ -249,8 +250,8 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 	\item[Special Cash Flows] ~
 	\begin{itemize}
 		\item {\bf Annuity:}
-		$$ PV = A \cdot \frac{1}{r} \Big[\ 1-\frac{1}{(1+r)^T} \Big] $$
-		$$	FV = PV \cdot (1+r)^T $$
+		$ PV = A \cdot \frac{1}{r} \Big[\ 1-\frac{1}{(1+r)^T} \Big] $
+		$	FV = PV \cdot (1+r)^T $
 		\item {\bf Annuity with constant growth:} 
 		$$ PV =
 		\begin{cases}
@@ -258,9 +259,9 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		$$A \cdot \frac{T}{1+r}$$ \quad\text{if }  $$ r=g $$
 		\end{cases}$$
 		\item {\bf Perpetuity:}
-		$$PV = \frac{A}{r}$$
+		$PV = \frac{A}{r}$
 		\item {\bf Perpetuity with constant growth:} 
-		$$ PV = \frac{A}{r-g}  \text{,}\quad r>g$$
+		$ PV = \frac{A}{r-g}  \text{,}\quad r>g$
 	\end{itemize}
 \end{description}
 
@@ -268,8 +269,8 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 \begin{description}[itemsep=0pt]
 	\item[APR / EAR]  ~
 	\begin{itemize}
-		\item {\bf EAR:Effective Annual Rate} $$ r_{EAR} = \left( 1+\frac{r_{APR}}{k} \right)^k-1 $$
-		\item {\bf APR:Annual Percentage Rate} $$ r_{APR} = k \left[\left( 1+r_{EAR} \right)^ {\frac{1}{k}}-1 \right] $$
+		\item {\bf EAR:Effective Annual Rate} $ r_{EAR} = \left( 1+\frac{r_{APR}}{k} \right)^k-1 $
+		\item {\bf APR:Annual Percentage Rate} $ r_{APR} = k \left[\left( 1+r_{EAR} \right)^ {\frac{1}{k}}-1 \right] $
 	\end{itemize}
 \end{description}
 
@@ -333,9 +334,9 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 \begin{description}[itemsep=0pt]
 	\item[P/E and PVGO: price/earning and present value of growth opportunities]  ~
 	\begin{itemize}
-		\item {\bf P/E and PVGO:} $$ P_0 = \frac{EPS_1}{r} + PVGO $$
-		\item {\bf if $PVGO=0$:} $$ P/E = \frac{1}{r}  $$
-		\item {\bf if $PVGO>0$:} $$ P/E = \frac{1}{r} + \frac{PVGO}{EPS_2} > \frac{1}{r} $$	
+		\item {\bf P/E and PVGO:} $ P_0 = \frac{EPS_1}{r} + PVGO $
+		\item {\bf if $PVGO=0$:} $ P/E = \frac{1}{r}  $
+		\item {\bf if $PVGO>0$:} $ P/E = \frac{1}{r} + \frac{PVGO}{EPS_2} > \frac{1}{r} $
 	\end{itemize}
 \end{description}
 
@@ -346,10 +347,10 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 \begin{description}[itemsep=0pt]
 	\item[plow-back ratio $b_t$]  ~
 	\begin{itemize}
-		\item {\bf Investments:} $$ I_t = EPS_t \cdot b_t $$
-		\item {\bf Next year earnings $EPS_{t+1}$:} $$ EPS_{t+1} = EPS_t +ROI_t \cdot I_t $$
-		\item {\bf Next year book value $BVPS_{t+1}$:} $$ BVPS_{t+1} = BVPS_t + I_{t+1} $$\\
-		\item {\bf Dividedns $D_t$:} $$ D_t = EPS_t (1-b_t) $$
+		\item {\bf Investments:} $ I_t = EPS_t \cdot b_t $
+		\item {\bf Next year earnings} $ EPS_{t+1} = EPS_t +ROI_t \cdot I_t $
+		\item {\bf Next year book value:} $ BVPS_{t+1} = BVPS_t + I_{t+1} $
+		\item {\bf Dividedns:} $ D_t = EPS_t (1-b_t) $
 		
 			
 	\end{itemize}
@@ -391,6 +392,18 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 			
 	\end{itemize}
 \end{description}
+
+\begin{description}[itemsep=0pt]
+	\item[Two-factor model]  ~
+	\begin{itemize}
+		\item {\bf Asset returns:} $ E[\tilde{r}_i] - r_f =  b_{i1} \lambda_1 + b_{i2} \lambda_2 $
+		\item {\bf Return variance:} $ \sigma_i = \sqrt{ b_{i,1}^2 Var[f_1] +  b_{i,2}^2 Var[f_2] + Var[\tilde{u}_i}]$
+		\item {\bf Return covariance:} $ Cov_{1,2} =  b_{1,1} b_{1,2} Var[f_1]  +  b_{1,2} b_{2,2} Var[f_2]$
+		\item {\bf Return correlation:} $ Corr_{1,2} = \frac{Cov_{1,2}}{\sigma_1 \sigma_2}$
+		
+	\end{itemize}
+\end{description}
+
 
 \begin{description}[itemsep=0pt]
 	\item[Multifactor models]  ~
@@ -563,6 +576,7 @@ $$ PI = \frac{PV}{-CF_0} = \frac{PV}{I_0} $$
 	\end{itemize}
 \end{description}
 
+\newpage
 
 \section{Recommended Resources} \smallskip \hrule height 1pt \smallskip
 
