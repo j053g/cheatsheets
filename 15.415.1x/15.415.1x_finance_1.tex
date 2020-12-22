@@ -200,6 +200,11 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 		\item Law of One Price: Two assets with the same payoff must have the same	market price.
 		\item Suppose the firm is considering a project yielding time-1 cash flow: $X=(X_1, X_2, \dots, X_N)$
 		\item Using prices of A-D securities, we can attach {\bf market value} to this cash flow as: $P = \phi_1 X_1 + \dots +\phi_N X_N = PV $
+		\item Example:  Suppose there are two states next year. The payoff of a share of stock and the probabilities of the states are 
+		$[(X_1, X_2); (p_1, p_2)]$ the state prices for the two states are $(\phi_1, \phi_2)$ \\
+		    Stock price today: $P = \phi_1 X_1 + \phi_2 X_2 $  \\
+			Expected rate of return:  $\bar{r} = \frac{E[X]-P}{P}  = \frac{p_1 X_1 + p_2 X_2}{P} -1$
+		      
 		\item Example for three assets: riskless bonds pays \$100 in each state currently traded at $B1_0$, stock 1 pays off $[S1_1, S1_2, S1_3]$ and currently traded at $S1_0$, 
 		 stock 2 pays off $[S2_1, S2_2, S2_3]$ and currently traded at $S2_0$:
 		$$
@@ -472,16 +477,17 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 \end{description}
 
 $ \text{Strong-form EMH} \implies \text{Semistrong-form EMH} \implies \text{Weak-form EMH}  $
-	\begin{center}
-	\begin{tikzpicture}[scale=0.6]
-		\draw[blue, thick] (4.5,3) ellipse (6 and 2);
-		\node[left, align=center] at (1,3) {Strong-\\form\\set };
-		\draw[red, thick] (5.5,3) ellipse (4.5 and 1.5);
-		\node[left, align=center] at (4.2,3) {Semistrong-\\form\\set };
-		\draw[black, thick] (6.5,3) ellipse (2.5 and 1);
-		\node[left, align=center] at (7,3) {Weak-\\form\\set };		
-	\end{tikzpicture}
-\end{center}
+
+%	\begin{center}
+%	\begin{tikzpicture}[scale=0.6]
+%		\draw[blue, thick] (4.5,3) ellipse (6 and 2);
+%		\node[left, align=center] at (1,3) {Strong-\\form\\set };
+%		\draw[red, thick] (5.5,3) ellipse (4.5 and 1.5);
+%		\node[left, align=center] at (4.2,3) {Semistrong-\\form\\set };
+%		\draw[black, thick] (6.5,3) ellipse (2.5 and 1);
+%		\node[left, align=center] at (7,3) {Weak-\\form\\set };		
+%	\end{tikzpicture}
+%\end{center}
 
 
 
