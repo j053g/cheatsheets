@@ -156,13 +156,13 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 	\begin{itemize} 
 	 \item    Source of funds = Use of funds \\
 	  $ NI + \Delta D + \Delta E = I + C + Div + T $ 
-	\item NI: net income
-	\item $\Delta D$ : funds raised from new debt issue
-	\item $\Delta E$ : funds raised from new equity issue
-	\item $I$: investment
-	\item $C$: coupon payment
-	\item $Div$:  dividend payment
-	\item $T$ : tax payment
+	\item NI: net income, 
+	 $\Delta D$ : funds raised from new debt issue,
+	 $\Delta E$ : funds raised from new equity issue,
+	 $I$: investment,
+	 $C$: coupon payment,
+	 $Div$:  dividend payment,
+	 $T$ : tax payment,
 	\end{itemize}
 \end{description}
 
@@ -300,11 +300,35 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 
 \section{Week 4: Fixed Income Securities}\smallskip \hrule height 1pt \smallskip
 
-
+\begin{description}[itemsep=0pt]
+	\item[Bond prices and interest rates]  ~
+	\begin{itemize}
+		\item Prices of discount bonds provide information about spot interest rates: $DF_t=\frac{1}{(1+s_t)^t} \implies s_t = (\frac{1}{DF_t})^{(\frac{1}{t})}-1$ 
+		\item Price of one price: $B= FV \cdot B_T + \sum_{t=1}^{T} C_t B_t $
+	\end{itemize}
+\end{description}
 \subsection{Relative Bond Valuation}
 \begin{description}[itemsep=0pt]
 	\item[Arbitrage]  ~
-	\begin{itemize}
+	\begin{itemize} obtaining zero coupon bond prices $B_1$, $B_2$ and $B_3$: from a set of three bonds with prices $P_1$, $P_2$ and $P_3$:
+		$$
+		\begin{pmatrix}
+			C_1+F & 0 & 0  \\
+			C_2 & C_2+F & 0  \\
+			C_3 & C_3 & C_3+F  \\								
+		\end{pmatrix} \cdot 
+		\begin{pmatrix}
+			B_1\\
+			B_2 \\
+			B_3 \\								
+		\end{pmatrix}	
+		=
+		\begin{pmatrix}
+			P_1 \\
+			P_2 \\
+			P_3 \\									
+		\end{pmatrix}
+		$$
 		\item {\bf Arbitrage: } The key is to construct the payoffs so that we get \$100 in year 0 
 		and we get \$0 payoffs in all of the subsequent years, i.e. the cashflows of the bonds should offset each other at all times except year 0 when we realize the arbitrage of \$100. For example, suppose there are three bonds with prices $P_1$, $P_2$ and $P_2$ with maturities 1, 2 and 3 years and coupons $C_1$, $C_2$, $C_3$, respectively, and all with face value $F$. There is a fourth bond with price $P_4$ and coupon $C_4$ with maturity 3 years (adjust cashflows if maturity is not 3 years) undervalued or overvalued. In order to find the arbitrage strategy we need to solve the following system of equations:
 		$$
@@ -352,10 +376,8 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 \section{Week 5: Stocks}\smallskip \hrule height 1pt \smallskip
 
 
-\subsection{Growth Opportunities and Stock Valuation}
-
 \begin{description}[itemsep=0pt]
-	\item[P/E and PVGO: price/earning and present value of growth opportunities]  ~
+	\item[Growth Opportunities and Stock Valuation]  ~
 	\begin{itemize}
 		\item {\bf P/E and PVGO:} $ P_0 = \frac{EPS_1}{r} + PVGO $
 		\item {\bf if $PVGO=0$:} $ P/E = \frac{1}{r}  $
@@ -365,17 +387,16 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 
 
 
-\subsection{Investment and Growth}
-
 \begin{description}[itemsep=0pt]
-	\item[plow-back ratio $b_t$]  ~
+		\item[Investment and Growth]  ~
 	\begin{itemize}
+		\item {plow-back ratio} $b_t = 1-payout = 1-\frac{DIV}{EPS}$
 		\item {\bf Investments:} $ I_t = EPS_t \cdot b_t $
 		\item {\bf Next year earnings} $ EPS_{t+1} = EPS_t +ROI_t \cdot I_t $
 		\item {\bf Next year book value:} $ BVPS_{t+1} = BVPS_t + I_{t+1} $
 		\item {\bf Dividends:} $ D_t = EPS_t (1-b_t) $
-		
-			
+		\item {\bf Growh rate:} $g = b \cdot ROI$
+		\item  $V_{0,no inv t>0}=E_1/r$ , $NPV_1 = -E_1 + \frac{E_2-E_1}{r}$ ,  $V_0 = V_{0,no inv t>0}+\frac{NPV_1}{1+r}$		
 	\end{itemize}
 \end{description}
 
@@ -420,8 +441,8 @@ Cheat sheet for MITx: 15.415.1x Foundations of Modern Finance I.
 	\item[Two-factor model]  ~
 	\begin{itemize}
 		\item {\bf Asset returns:} $ E[\tilde{r}_i] - r_f =  b_{i1} \lambda_1 + b_{i2} \lambda_2 $
-		\item {\bf Return variance:} $ \sigma_i = \sqrt{ b_{i,1}^2 Var[f_1] +  b_{i,2}^2 Var[f_2] + Var[\tilde{u}_i}]$
-		\item {\bf Return covariance:} $ Cov_{1,2} =  b_{1,1} b_{1,2} Var[f_1]  +  b_{1,2} b_{2,2} Var[f_2]$
+		\item {\bf Return std dev:} $ \sigma_i = \sqrt{ b_{i,1}^2 Var[f_1] +  b_{i,2}^2 Var[f_2] + Var[\tilde{u}_i}]$
+		\item {\bf Return covariance:} $ Cov_{1,2} =  b_{1,1} b_{2,1} Var[f_1]  +  b_{1,2} b_{2,2} Var[f_2]$
 		\item {\bf Return correlation:} $ Corr_{1,2} = \frac{Cov_{1,2}}{\sigma_1 \sigma_2}$
 		
 	\end{itemize}
@@ -519,7 +540,7 @@ $ \text{Strong-form EMH} \implies \text{Semistrong-form EMH} \implies \text{Weak
 		\item {\bf For a single project:} Take it if and only if its NPV is positive.
 		\item {\bf For many independent projects:}  Take all those with positive NPV.
 		\item {\bf For mutually exclusive projects:}  Take the one with positive and highest NPV.
-		\item {\bf NPV:} $$ NPV = CF_0 + \frac{CF_1}{1+r_1}+\frac{CF_2}{(1+r_2)^2} + \cdots + \frac{CF_T}{(1+r_T)^T} $$
+		\item $NPV = CF_0 + \frac{CF_1}{1+r_1}+\frac{CF_2}{(1+r_2)^2} + \cdots + \frac{CF_T}{(1+r_T)^T} $
 		\item {\bf Operating Profit:}
 			 \begin{align*}
 			 	 OperatingProfits &=  OperatingRevenues \\
@@ -532,13 +553,9 @@ $ \text{Strong-form EMH} \implies \text{Semistrong-form EMH} \implies \text{Weak
 				 \tau &: \text{tax rate} \\
 				 CapEx &: \text{Capital Expenditure} \\
 				 \Delta WC &: \text{Change in working capital} \\
-			\end{align*}	
-		\item {\bf Working Capital:} 
-			\begin{align*}
-				WC &= Inventory + A/R - A/P \\
-				A/R &: \text{Accounts Receivable} \\
-				A/P &: \text{Accounts Payable} \\
-			\end{align*}					
+			\end{align*}
+		\item {\bf Working Capital:} $WC = Inventory + A/R - A/P$, $A/R : \text{Accounts Receivable}$, $A/P : \text{Accounts Payable}$
+				
 	\end{itemize}
 \end{description}
 
