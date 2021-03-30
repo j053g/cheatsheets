@@ -1,0 +1,162 @@
+\section{Options, Part 1}
+
+
+\subsection*{Net option payoff}
+
+The break-even point is given by $S_T$ at which Net Payoff is zero:
+
+$Net payoff = max[S_T-K,0]-C(1+r)^T $
+
+
+\subsection*{Option strategies}
+
+\begin{itemize}
+	\item Protective Put: Buy stock + Buy a put
+	\item Bull Call Spread: Buy a Call K1 + Write a Call K2, $K1<K2$
+	\item Straddle: Buy a Call at $K$ + Buy a Put at $K$
+\end{itemize} 
+
+\subsection*{Corporate securities as options}
+\begin{itemize}
+	\item Equity ($E$): A call option on the firm’s assets ($A$) with the exercise price
+	equal to its bond’s redemption value.
+	\item Debt ($D$): A portfolio combining the firm’s assets ($A$) and a short position in
+	the call with the exercise price equal to its bond’s face value ($F$):
+	
+\end{itemize}
+
+
+$ A = D+E \implies D=A-E$ \\
+$ E \equiv max(0,A-F) $ \\
+$ D=A-E=A-max[0,A-F]$
+
+\subsection*{Put-Call parity for European options}
+
+$ C + B \cdot K = P + S$
+
+
+\subsection*{Binominal option pricing model}
+Stock
+
+	\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=2em}
+	]
+	{
+		&  $S_u$ 	 &  \\
+		{}	&   		 &  \\
+		&  $S_d$ 	 &  \\
+	};
+	\node[bullet,right=0mm of tree-2-1.east,label=above:$S_0$](b-2-1){};
+	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};
+	\node[bullet,left=0mm of tree-3-2.west](b-3-2){};
+	\draw[->] (b-2-1) -- (b-1-2) node [midway,above] {};
+	\draw[->] (b-2-1) -- (b-3-2) node [midway,above] {};
+	\end{tikzpicture}
+
+Bond
+
+\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=2em}
+	]
+	{
+		&  $1+r$ 	 &  \\
+		{}	&   		 &  \\
+		&  $1+r$ 	 &  \\
+	};
+	\node[bullet,right=0mm of tree-2-1.east,label=above:$1$](b-2-1){};
+	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};
+	\node[bullet,left=0mm of tree-3-2.west](b-3-2){};
+	\draw[->] (b-2-1) -- (b-1-2) node [midway,above] {};
+	\draw[->] (b-2-1) -- (b-3-2) node [midway,above] {};
+\end{tikzpicture}
+
+Option at Expiration
+
+\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=2em}
+	]
+	{
+		&  $max(S_u-K,0)$ 	 &  \\
+		{}	&   	     	 &  \\
+		&  $max(S_d-K,0)$ 	 &  \\
+	};
+	\node[bullet,right=0mm of tree-2-1.east,label=above:$C_0$](b-2-1){};
+	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};
+	\node[bullet,left=0mm of tree-3-2.west](b-3-2){};
+	\draw[->] (b-2-1) -- (b-1-2) node [midway,above] {};
+	\draw[->] (b-2-1) -- (b-3-2) node [midway,above] {};
+\end{tikzpicture}
+
+Replicating portfolio (call option)
+$
+\begin{pmatrix}
+	S_u & (1+r)  \\
+	S_d  & (1+r)  \\
+						
+\end{pmatrix} \cdot 
+\begin{pmatrix}
+	a \\
+	b \\							
+\end{pmatrix}	
+=
+\begin{pmatrix}
+	max(K-S_u,0)\\
+	max(K-S_d,0) \\						
+\end{pmatrix}
+$ 
+
+solve system to form a portfolio of stock and bond that replicates the call’s payoff:
+$a$ shares of the stock;
+$b$ dollars in the riskless bond
+
+\subsection*{Binominal option pricing model with multiple periods}
+
+\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=2em}
+	]
+	{
+		 &  		 & $C_{uu}$  & \\
+		 &  $C_u$    &  		 & \\
+	  	 &           & $C_{ud}$	 & \\
+     {}  &           &	         & \\
+		 &           & $C_{du}$	 & \\
+		 &  $C_{d}$  &      	 & \\
+		 &           & $C_{dd}$	 & \\
+	};
+	\node[bullet,right=0mm of tree-4-1.south,label=above:$C_0$](b-4-1){};
+	\node[bullet,left=1mm of tree-2-2.south](b-2-2){};
+	\node[bullet,left=1mm of tree-6-2.south](b-6-2){};
+	\node[bullet,left=1mm of tree-1-3.south](b-1-3){};
+	\node[bullet,left=1mm of tree-3-3.south](b-3-3){};
+	\node[bullet,left=1mm of tree-5-3.south](b-5-3){};
+	\node[bullet,left=1mm of tree-7-3.south](b-7-3){};
+	\draw[->] (b-4-1) -- (b-2-2) node [midway,above] {};
+	\draw[->] (b-4-1) -- (b-6-2) node [midway,above] {};
+	\draw[->] (b-2-2) -- (b-1-3) node [midway,above] {};
+	\draw[->] (b-2-2) -- (b-3-3) node [midway,above] {};
+	\draw[->] (b-6-2) -- (b-5-3) node [midway,above] {};
+	\draw[->] (b-6-2) -- (b-7-3) node [midway,above] {};	
+\end{tikzpicture}
+
+Compute the time-0 value working backwards: first $C_u$ and $C_d$ then $C_0$.
+In summary:
+\begin{itemize}
+	\item Replication strategy gives payoffs identical to those of the call.
+	\item Initial cost of the replication strategy must equal the call price
+\end{itemize}

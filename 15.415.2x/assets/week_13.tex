@@ -1,0 +1,97 @@
+\section{Options, Part 2}
+
+\subsection*{Binomial model: risk-neutral pricing}
+
+Stock
+
+\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=2em}
+	]
+	{
+		&  $u S_0$ 	 &  \\
+		{}	&   		 &  \\
+		&  $d S_0$ 	 &  \\
+	};
+	\node[bullet,right=0mm of tree-2-1.east,label=above:$S_0$](b-2-1){};
+	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};
+	\node[bullet,left=0mm of tree-3-2.west](b-3-2){};
+	\draw[->] (b-2-1) -- (b-1-2) node [midway,above] {};
+	\draw[->] (b-2-1) -- (b-3-2) node [midway,above] {};
+\end{tikzpicture}
+
+
+Option at Expiration
+
+\begin{tikzpicture}[>=stealth,sloped]
+	\matrix (tree) [
+	matrix of nodes,
+	minimum size=0cm,
+	column sep=1cm,
+	row sep=0.0cm,nodes={text width=1em}
+	]
+	{
+		&   $max(u S_0-K,0)$	 &  \\
+		{}	&   	     	 &  \\
+		&  $max(d S_0-K,0)$ 	 &  \\
+	};
+	\node[bullet,right=0mm of tree-2-1.east,label=above:$C_0$](b-2-1){};
+	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};
+	\node[bullet,left=0mm of tree-3-2.west](b-3-2){};
+	\draw[->] (b-2-1) -- (b-1-2) node [midway,above] {};
+	\draw[->] (b-2-1) -- (b-3-2) node [midway,above] {};
+\end{tikzpicture}
+
+Solve by replication $\delta$ shares of the stock, $b$ dollars of riskless bond
+
+$\delta u S_0 + b (1+r) = C_u$ \\
+$\delta d S_0 + b (1+r) = C_d$
+
+Solution: $\delta = \frac{C_u-C_d}{(u-d)S_0}$ , 
+$b=\frac{1}{1+r}\frac{uC_d-dC)u}{u-d}$ \\
+Then: $C_0 = \delta S_0 + b$ \\
+$ C_0 = \frac{C_u-C_d}{(u-d)} \frac{1}{1+r} \frac{uC_d-dC)u}{u-d}$ \\
+
+\subsection*{Risk neutral probability}
+
+$q_u=\frac{(1+r)-d}{u-d}$, $q_d = \frac{u-(1+r)}{u-d}$ Then
+
+$C_0=\frac{q_u C_u + q_d C_d}{1+r} = \frac{E^Q[C_T]}{1+r}$ 
+where $E^Q[\cdot]$ is the expectation under probability $Q=(1,1-q)$, which is
+called the risk-neutral probability
+
+\subsection*{State prices and risk-neutral probabilities}
+$\Phi_u = \frac{q}{1+r}$ , $\Phi_d = \frac{1-q}{1+r}$
+
+$\Phi_{uu} = \frac{q^2}{(1+r)^2}$ , $\Phi_{ud} = \Phi_{du} = \frac{q(1-q)}{(1+r)^2}$ , $\Phi_{dd} = \frac{(1-q)^2}{(1+r)^2}$
+With state prices, can price any state-contingent payoff as a portfolio of
+state-contingent claims: mathematically equivalent to the risk-neutral
+valuation formula.
+
+
+\subsection*{Implementing binominal model}
+
+\begin{itemize}
+	\item As we reduce the length of the time step, holding the maturity fixed, the
+	binomial distribution of log returns converges to Normal distribution.
+	\item Key model parameters $u$, and $d$ need to be chosen to reflect the
+	distribution of the stock return
+\end{itemize}
+
+Once choice is:  $u=exp(\sigma \frac{T}{n})$, $d=\frac{1}{u}$, $p=\frac{1}{2} + \frac{1}{2} \frac{u}{\sigma} \sqrt{\frac{T}{n}}$
+
+\subsection*{Black-Scholes-Merton formula}
+
+$C_0 = S_0 N(x) - K e^{-rT} N (x-\sigma \sqrt(T))$ \\
+$x = \frac{ln(\frac{S_0}{K e^{-rT}})}{\sigma \sqrt{T}} + \frac{1}{2} \sigma \sqrt{T}$ \\
+
+The call is equivalent to a levered long position in the stock;
+ $S_0 N(x) $ is the amount invested in the stock;
+$K e^{-rT} N (x-\sigma \sqrt(T))$ is the dollar amount borrowed;
+
+
+
+
