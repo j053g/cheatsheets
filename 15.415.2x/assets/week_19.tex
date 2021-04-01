@@ -1,1 +1,54 @@
 \section{Investment and Financing}
+
+\subsection*{Leverage and taxes}
+
+Notation: 
+
+$X_t$ - CF from the firm’s assets at time $t$ (independent of leverage), \\
+$V_{U,t}$ - value of firm without leverage at $t$, \\
+$V_{L,t}$ - value of the firm with leverage at $t$, \\
+$D_t$ - value of its debt, \\
+$E_t$ - value of its equity, \\
+$r_A$ - required rate of return on the firm's assets of the unlevered firm,
+$r_L$ - required rate of return on the levered firm,
+$r_D$ - required rate of return interest on debt,
+$r_E$ - required rate of return on equity, \\
+$\tau$ - corporate tax rate.
+
+\subsection*{Leverage without tax shield}
+
+$V = D+E = \sum_{s=1}^{\infty} \frac{(1-\tau)X_S}{(1+r_A)^2} =V_U =\sum_{s=1}^{\infty} \frac{(1-\tau)X_S}{(1+WACC)^2} =V_L$
+
+MM II: Cost of equity with leverage ($D/E$) is:
+$r_E=r_A+\frac{D}{E}(r_a-r_D)$ \\
+$r_A$ is independent of $D/E$ (leverage),
+$r_E$ increases with $D/E$ (assuming riskless debt),
+$r_D$ may also increase with $D/E$ as debt becomes risky.
+
+
+\subsection*{Leverage with tax shield - APV}
+
+$V_L = E+D = V+PVTS-PDVC = APV$, assuming debt is riskless $V_L = E+D = V+PVTS = APV$
+
+\subparagraph*{Leverage with tax shield - WACC}
+Assume {\bf Leverage ratio remains constant over time} $w_D = \frac{D_t}{V_{L,t}}$, $\frac{E_t}{V_{L,t}}=w_E$ \\
+first, we have: 
+$r_L = w_D r_D + w_E r_E$ \\
+Next, we have: 
+$(1 + r_L - w_D\tau r_D) V_{L,t}=(1-\tau) X_{t+1} + V_{L,t+1}$ \\
+
+define $WACC = w_D (1-\tau)r_D + w_E r_E$, then: \\
+
+$V_{L,t} = \frac{(1-\tau)X_t + V_{L,t+1}}{1+WACC} = \sum_{s=1}^{\infty} \frac{(1-\tau)X_{t+s}}{(1+WACC)^s}$
+
+\subsection*{WACC with taxes - WACC}
+
+$V_L = \sum_{s=1}^{\infty} \frac{(1-\tau)X_{s}}{(1+WACC)^s}$ where $WACC = w_D (1-\tau)r_D + w_E r_E = \frac{D}{D+E} (1-\tau) r_D + \frac{E}{D+E}r_E $
+
+\subsection*{Implementing APV}
+
+1. Find a traded firm with the same business risk: Debt to equity ratio $\frac{D}{E}$, Equity return $r_E$ (by CAPM or APT), Debt return $r_D$, Tax rate $\tau$.
+2. Uncover $r_A$ (the discount rate without leverage).
+3. Apply $r_A$ to the after-tax cash flow of the project to get $V_U$.
+4. Compute PV of debt tax shield.
+5. Compute APV.
