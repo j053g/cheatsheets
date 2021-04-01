@@ -1,1 +1,35 @@
 \section{Financing, Part II}
+
+\subsection*{MM with taxes}
+
+Notation: $U$: Unlevered, $L$: Levered, 
+ $X$: Terminal value, $\tau$: taxes. \\
+Firm $U$: $(1-\tau)X$ \\
+Firm $L$: $(1-\tau)(X-r_D D) + r_D D = (1-\tau)X + \tau r_D D $ \\
+$V_U =\frac{(1-\tau)X}{1+r_A} $ \\
+$V_L =\frac{(1-\tau)X}{1+r_A} + \frac{\tau r_D D}{1+r_D} = V_U + \frac{\tau r_D D}{1+r_D}  $ \\
+
+
+The value of a levered firm equals the value of the unlevered
+firm (with the same assets) plus the present value of the {\bf tax shield}
+
+$V_L = V_U + PV(\text{debt tax shield}) = V_U + PVTS$
+
+\subsection*{Costs of financial distress }
+
+$V_L = V_U + PV(\text{debt tax shield}) - PV (\text{cost of financial distress}) = APV$. Where $APV$: Adjusted present value.
+
+\subsection*{MM with personal tax}
+
+Notation: Debt level at $D$ with interest rate $r_D$.
+Corporate tax rate $\tau$. Investors pay additional personal taxes:
+\begin{itemize}
+	\item Tax rate on equity (dividend and capital gain) $\pi$.
+	\item Tax rate on debt (interest) $\delta$.
+\end{itemize}
+
+total after-tax cashflow:
+
+$\underbrace{(1-\pi)(1-\tau)X}_{\text{all equity firm}} + \underbrace{[(1-\delta)-(1-\pi)(1-\tau)]r_DD}_{\text{tax impact of debt}}$
+
+$V_L = V_U + [(1-\delta)-(1-\pi)(1-\tau)]PV(r_DD) $
