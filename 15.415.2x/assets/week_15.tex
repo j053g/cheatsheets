@@ -1,0 +1,43 @@
+\section{CAPM}
+
+For the market porfolio to be optional the RRR of all risky assets must be the same
+
+$RRR_i = \frac{\bar{r}_i-r_F}{\sigma_{iM}/ \sigma_M} = SR_M = \frac{\bar{r}_M-r_F}{\sigma_M}$
+
+then
+
+$ \bar{r}_i-r_F = \frac{\sigma_{iM}}{\sigma_M^2} (\bar{r}_M-r_F)  = \beta_{iM} (\bar{r}_M-r_F) $
+
+$\beta_{iM}$ is a measure of asset it's systematic risk: exposure to the market.
+$\bar{r}_M-r_F$ gives the premium per unit of systematic risk.
+
+\subsection*{Risk and return in CAPM}
+We can decompose an asset’s return into three pieces:
+
+
+$ \tilde{r}_i-r_F = \alpha_i \beta_{iM} (\tilde{r}_M-r_F) + \tilde{\epsilon}_i$
+
+$E[\tilde{\epsilon}_i]=0$, $Cov[\tilde{r}_M-r_F) , \tilde{\epsilon}_i]=0$
+
+Three characteristics of an asset: Alpha, according to CAPM, alpha should be zero for all assets. Beta: measures an asset’s systematic risk. SD[$\tilde{\epsilon}_i$] measures non-systematic risk.
+
+\subsection*{Leverage: equity beta vs asset betas}
+
+The assets of the firm serve to pay all investors, and so:
+$A=E+D$
+
+$\beta_A = \frac{E}{E+D} \beta_E + \frac{D}{E+D} \beta_D$
+
+
+\subsection*{R15Q1}
+inputs: $E[r_M]=14\%$, $E[r_P]=16\%$, $r_f=6\%$, $\sigma_M=25\%$
+
+$E[r_P] = r_F + \beta_P (E[r_M]-r_f) = 16\% = 6\% + \beta_P (14\% - 6\%) =1.25$
+
+to make a portfolio to be located in the capital line, one must use the risk-free asset with weight $w$:
+ $E[r_P]=w r_f + (1-w) E[r_M] = 6\%w+14\%(1-w) \implies w=\frac{E[r_P]-r_M}{r_F-r_M}=-0.25$
+ 
+$VaR[r_P] = Var[w r_f + (1-w) E[r_M]] = (1-w)^2 Var[r_M] \implies \sigma_P = 31.25\% $ 
+
+to find correlation use: 
+$\beta_P = \frac{Cov(r_P, r_M)}{Var(r_M)}=\frac{\rho_{P,M} \sigma_M \sigma_P }{\sigma_M^2} \implies \rho_{P,M}=\frac{\beta_P \sigma_M}{\sigma_P} = 1$
