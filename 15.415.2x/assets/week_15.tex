@@ -41,3 +41,6 @@ $VaR[r_P] = Var[w r_f + (1-w) E[r_M]] = (1-w)^2 Var[r_M] \implies \sigma_P = 31.
 
 to find correlation use: 
 $\beta_P = \frac{Cov(r_P, r_M)}{Var(r_M)}=\frac{\rho_{P,M} \sigma_M \sigma_P }{\sigma_M^2} \implies \rho_{P,M}=\frac{\beta_P \sigma_M}{\sigma_P} = 1$
+
+\subsection*{R15Q5}
+Empirically estimating CAPM.  $r_i-r_f = \alpha + \beta_{MKT}^i (r_{MKT}-r_f) + \epsilon_i$  In Excel : \texttt{LINEST($r_i-r_f$, $r_{MKT}-r_f$,1,0)} this yields $\beta_{MKT}$ and $\alpha$ in that order.

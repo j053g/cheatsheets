@@ -1,0 +1,50 @@
+\section{Capital Budgeting, Part II}
+
+\subsection*{R16Q1}
+To find sector 1 an2 $\beta$'s: $\beta_{s_1}$ and $\beta_{s_2}$ for firms $A$ and $B$:
+
+$\beta_{A} = w_{A,s_1} \beta_{s_1} +  w_{A,s_2}  \beta_{s_2}  $ \\
+$\beta_{B} = w_{B,s_1} \beta_{s_1} +  w_{B,s_2}  \beta_{s_2}  $ \\
+
+solve system for  $\beta_{s_1}$ and $\beta_{s_2}$.
+
+\subsection*{R16Q2}
+
+inputs: firm's $FCF_1$,  $\beta_1$, $\beta_2$, table below:
+\begin{center}
+	\begin{tabular}{ |c|c|c|c| } 
+		\hline
+		Portfolio & $E[r_i]$ & $\beta_{i,1}$ & $\beta_{i,2}$ \\ 
+		\hline
+		A & $r_A$ & $\beta_{A,1}$ &  $\beta_{A,2}$ \\ 
+		B & $r_B$ & $\beta_{B,1}$ &  $\beta_{B,2}$ \\ 
+		C & $r_C$ & $\beta_{C,1}$ &  $\beta_{C,2}$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+
+find firm value.
+
+Recall APT: $E[r_p] = r_f + \lambda_1 \beta_{P,1} + \lambda_2 \beta_{P,2}$ :
+
+
+$
+\begin{pmatrix}
+	1 & \beta_{A,1} &  \beta_{A,2} \\
+	1 & \beta_{B,1} &  \beta_{B,2} \\
+	1 & \beta_{C,1} &  \beta_{C,2} \\							
+\end{pmatrix} \cdot 
+\begin{pmatrix}
+	r_f \\
+	\lambda_1 \\
+	\lambda_2 \\								
+\end{pmatrix}	
+=
+\begin{pmatrix}
+	r_A \\
+	r_B \\
+	r_C \\								
+\end{pmatrix}
+$
+ 
+solve system to find $r_f$, $\lambda_1$, $\lambda_2$ then apply APT with firm loadings ($\beta$'s) to find $E[r]=r_f+\beta_1 \lambda_1 + \beta_2 \lambda_2 $ finally $V_0 = \frac{FCF_1}{E[r]-g}$
