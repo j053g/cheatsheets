@@ -23,10 +23,10 @@ Return-to-Risk Ratio $RRR_{i,p} = \frac{r_i-r_f}{Cov(r_i,r_p)/\sigma_p}$
 \subsection*{Portfolio and individual assets}
 In the presence of a risk-free asset, portfolio’s return is: $\bar{r}_p =r_F + \sum_{i=1}^{N} w_i (\bar{r}_i -r_F)$
 
-\subparagraph*{Individual contribution to expected return}
+{Individual contribution to expected return:}
 $ \frac{\partial \bar{r}_p}{\partial w_i}  = \bar{r}_i - r_F$
 
-\subparagraph*{Individual contribution to volatility}
+{Individual contribution to volatility:}
 $ \frac{\partial \sigma_p}{\partial w_i}  = \frac{Cov(\bar{r}_i,\bar{r}_p )}{\sigma_p}$
 
 \subsection*{Tangency Portfolio}
@@ -35,9 +35,9 @@ Note $\bm{\bar{x}}$ is vector of excess returns and $\bm{\vec{1}}$ is a vector o
 min $\bm{w}^\prime \cdot \bm{\Sigma} \cdot \bm{w} $  s.t. $\bm{w}^\prime \cdot \bm{\bar{x}} = m  $ solution: $w_T=\lambda \bm{\Sigma}^{-1} \bm{\bar{x}}$ 
 where $\lambda = \frac{1}{\bm{\bar{x}^\prime}  \bm{\Sigma}^{-1}  \bm{\vec{1}}} $. 
 In summary, the tangency weights are: $w_T=\frac{1}{\bm{\bar{x}^\prime}  \bm{\Sigma}^{-1}  \bm{\vec{1}}} \bm{\Sigma}^{-1} \bm{\bar{x}}$.
-In Excel  \texttt{$\lambda=$MMULT(MMULT(TRANSPOSE($\bm{\bar{x}}$),MINVERSE($\bm{\Sigma}$)),$\bm{\vec{1}}$)  } , lambda is a scalar, 
+In Excel use \texttt{$\bm{\Sigma}^{-1}$=MINVERSE($\bm{\Sigma}$)}, then \texttt{$\lambda=$MMULT(MMULT(TRANSPOSE($\bm{\bar{x}}$),$\bm{\Sigma}^{-1}$)),$\bm{\vec{1}}$)  } , lambda is a scalar, 
 then \\
-\texttt{$w_T=\lambda$ MMULT(MINVERSE($\bm{\Sigma}$),$\bm{\bar{x}}$ )}. \\
+\texttt{$w_T=\lambda$ MMULT($\bm{\Sigma}^{-1}$),$\bm{\bar{x}}$ )}. \\
 Once the tangency portfolio is found, $RRR$ is the same for all stocks, meaning that we cannot perturb the weights of individual assets in this portfolio to further increase its risk return trade off.
 
 
