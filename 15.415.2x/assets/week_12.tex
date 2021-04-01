@@ -10,7 +10,7 @@ $Net payoff = max[S_T-K,0]-C(1+r)^T $
 
 \subsection*{Option strategies}
 
-\begin{itemize}
+\begin{itemize}[leftmargin=*]
 	\item Protective Put: Buy stock + Buy a put
 	\item Bull Call Spread: Buy a Call K1 + Write a Call K2, $K1<K2$
 	\item Straddle: Buy a Call at $K$ + Buy a Put at $K$
@@ -46,9 +46,9 @@ Stock
 	row sep=0.0cm,nodes={text width=2em}
 	]
 	{
-		&  $S_u$ 	 &  \\
+		&  $S_u=uS_0$ 	 &  \\
 		{}	&   		 &  \\
-		&  $S_d$ 	 &  \\
+		&  $S_d=dS_0$ 	 &  \\
 	};
 	\node[bullet,right=0mm of tree-2-1.east,label=above:$S_0$](b-2-1){};
 	\node[bullet,left=0mm of tree-1-2.west](b-1-2){};

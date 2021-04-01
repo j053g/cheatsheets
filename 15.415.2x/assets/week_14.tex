@@ -1,0 +1,46 @@
+\section{Portfolio Theory}
+
+\subsection*{Preliminaries}
+
+Portfolio return and variance, two assets
+$ \bar{r}_p = w_1 \bar{r}_1 +  w_2 \bar{r}_2 $ \\
+$ \sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2 w_1 w_2 \sigma_{12}  $ \\
+$ \sigma_p^2 = w_1^2 \sigma_1^2 + w_2^2 \sigma_2^2 + 2 w_1 w_2 \rho_{12} \sigma_1 \sigma_2  $ \\		
+$  \rho_{12} = \frac{\sigma_{12}}{\sigma_1 \sigma_2}$ \\
+
+Quadratic formula is handy when solving for weights in the two asset case:
+$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+
+In general, for a vector of weights $\bm{w}$ , returns $\bm{r}$ and covariance matrix $\bm{\Sigma}$:
+$ r_p = \bm{w} \cdotp \bm{r} $ \\ 	and $\bm{ \sigma_p}^2 = \bm{w}^\prime \cdot \bm{\Sigma} \cdot \bm{w} $
+in Excel  \texttt{$\sigma_p^2$=MMULT(MMULT(TRANSPOSE($\bm{w}$),$\bm{\Sigma}$),$\bm{w}$)  }
+
+
+\subsection*{Sharpe Ratio}
+$SR = \frac{r-r_f}{\sigma}$ , 
+Return-to-Risk Ratio $RRR_{i,p} = \frac{r_i-r_f}{Cov(r_i,r_p)/\sigma_p}$
+
+\subsection*{Tangency Portfolio}
+Note $\bm{\bar{x}}$ is vector of excess returns and $\bm{\vec{1}}$ is a vector of ones of size $I$, number of stocks.
+
+min $\bm{w}^\prime \cdot \bm{\Sigma} \cdot \bm{w} $  s.t. $\bm{w}^\prime \cdot \bm{\bar{x}} = m  $ solution: $w_T=\lambda \bm{\Sigma}^{-1} \bm{\bar{x}}$ 
+where $\lambda = \frac{1}{\bm{\bar{x}^\prime}  \bm{\Sigma}^{-1}  \bm{\vec{1}}} $. 
+In summary, the tangency weights are: $w_T=\frac{1}{\bm{\bar{x}^\prime}  \bm{\Sigma}^{-1}  \bm{\vec{1}}} \bm{\Sigma}^{-1} \bm{\bar{x}}$.
+In Excel  \texttt{$\lambda=$MMULT(MMULT(TRANSPOSE($\bm{\bar{x}}$),MINVERSE($\bm{\Sigma}$)),$\bm{\vec{1}}$)  } , lambda is a scalar, 
+then \\
+\texttt{$w_T=\lambda$ MMULT(MINVERSE($\bm{\Sigma}$),$\bm{\bar{x}}$ )}. \\
+Once the tangency portfolio is found, $RRR$ is the same for all stocks, meaning that we cannot perturb the weights of individual assets in this portfolio to further increase its risk return trade off.
+
+\subsection*{R14Q4}
+$r_i = b_{1} F_1 + b_{2,i} F_2 + \epsilon_i $\\
+inputs:
+$b_1=10$, $b_{2,i}=i$, 
+$F_1$ has $E[F_1]=0\%$ and $\sigma_{F_1}=1\%$ , $F_2$ has  $E[F_2]=1\%$ and $\sigma_{F_2}=1\%$, and $\epsilon_i$ has $E[\epsilon_i]=0\%$ and $\sigma_{\epsilon_i}=30\%$. $F_1$, $F_2$, $\epsilon_i$ are indep. of each other, and $r_f=0.75\%$.\\
+find sharpe ratio and return-to-risk ratio RRR \\
+$E[r_i] = b_1E[F_1] + b_2,iE[F_2] + E[\epsilon_i]=i \cdot 1\%$ \\
+
+$V [r_i] = V [b_1F_1 + b_{2,i}F2 + \epsilon_i]= b_1^2V[F+1] + b_{2,i}^2V [F_2] + V [\epsilon_i] =  10^2  \times 0.01^2 + i^2  \times 0.01^2 + 0.3^2$ \\
+$Cov(r_i,r_j) = Cov(b_1 F_1 + b_{2,i}F+2 + \epsilon_i, b_1 F_1 + b_{2,j} F_2 + \epsilon_j) = V[b_1 F_1] + Cov(b_{2,i}F_2 , b_{2,j} F_2 ) = b_1^2 V[F_1] + b_{2,i}b_{2,j}V[F_2] = 10^2 \times 0.01^2 + i \times j \times 0.01^2 $. With the variances (note variances have an extra-term) and covariances now we can form $\Sigma$ and compute sharpe ratio.
+
+$RRR_{i,p} = \frac{r_i-r_f}{Cov(r_i,r_p)/\sigma_p}$  note $Cov(r_i, r_p) = Cov(r_i,\sum_{j=1}^{I} w_j r_j) = \sum_{j=I}^{I}w_j Cov(r_i, r_j) $
+
