@@ -15,6 +15,11 @@ $WACC=\frac{D}{D+E}r_D + \frac{E}{D+E}r_E = w_D r_D + w_E + r_E$
 
 {\bf MM-II}  $r_E = r_A + \frac{D}{E} (r_A-r_D)$
 
+if CAPM holds then:  $\beta_A =w_D \beta_D + (1-w_D) \beta_E \implies \beta_E = \frac{1}{1-w_DD}\beta_A$ or \\
+$\beta_E = (1+\frac{D}{E})\beta_A$ if debt is risk-less. \\
+If debt is not risk-less then $\beta_E = \beta_A +\frac{D}{E}(\beta_A-\beta_D)$
+
+
 \subsection*{Default premium and risk premium}
 
 {\bf Promised YTM}: the yield if default does not occur.
@@ -41,3 +46,4 @@ $WACC=\frac{D}{D+E}r_D + \frac{E}{D+E}r_E = w_D r_D + w_E + r_E$
 	\draw [-latex, ,xshift=5pt, right](6,5.5)--(5.5,5.5) node [right, ,xshift=5pt] {\footnotesize Promised YTM};
 \end{tikzpicture}
 
+Given recovery rate of $RR$ and probability of default $PD$, expected yield $\bar{y}$ and promised yield $y$, then: $1 + \bar{y} = (1-PD)(1+y)+PD[(1-RR)(1+y)]$, solve for $y$ to know coupon to issue at par.
