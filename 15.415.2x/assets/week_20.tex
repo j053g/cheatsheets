@@ -1,1 +1,53 @@
 \section{Payout \& Risk Management}
+
+\subsection*{Modigliani-Miller on payout}
+
+MM Payout Policy Irrelevance: In a financial market with no imperfections,
+holding fixed its investment policy (hence its free cash flow), a firm's payout
+policy is irrelevant and does not affect its initial share price.
+
+Paying dividends is a zero NPV transaction. Firm value before dividend = Firm value dividend + Dividend.
+
+
+\subsection*{Hedging basics}
+
+Let $V_{original}$: Value of the original position (unhedged), \\
+$V_{hedging}$ - Value of the hedging position, \\
+$V_{net}$ -  Value of the hedged position.
+Then, \\
+$V_{net} = V_{original} + (\text{hedge ratio}) \times V_{hedging} $
+
+The hedge is perfect if: 1. $V_{original}$ and $V_{hedging}$ are perfectly correlated, and 2. Hedge ratio is appropriately chosen.
+Otherwise, the hedging is imperfect.
+
+
+\subsection*{Managing interest rate risk}
+
+{\bf Preliminaries } \\
+	 {\bf Modified Duration (MD) for discount bond $ B_t=\frac{1}{(1+y)^t} $ } $ MD(B_t) = -\frac{1}{B_t}\frac{dB_t}{dy} = \frac{t}{1+y}$  \\
+	 {\bf Macaulay Duration} is the weighted average term to maturity  $ D = \sum_{t=1}^{T} \left(   \frac{PV(CF_T)}{B}  t \right)  =   \frac{1}{B}\sum_{t=1}^{T} \left(  \frac{CF_t}{(1+y)^t} t \right)  $ \\
+	 {\bf Modified Duration} measures bond's interest rate risk by its relative price change with respect
+	to a unit change in yield (with a negative sign):  $ MD =  -\frac{1}{B}\frac{dB}{dy}  = \frac{D}{1+y}  $ \\
+	 {\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $ CX =  \frac{1}{2}\frac{1}{B}\frac{d^2B}{dy^2}  $ \\
+	$ CX = \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} \frac{t (t+1) CF_t}{(1+t)^t} =  \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} PV(CF_t) t (t+1)  $ \\
+	 {\bf Taylor series approximation of bond price changes}  $ \Delta B \approx  B \left(  -MD  \cdot \Delta y + CX \cdot ( \Delta y)^2 \right)    $ \\
+
+
+
+\begin{center}
+	\begin{tabular}{ |c|c|c|c| } 
+		\hline
+		Bond & Price & Dur & ModDur \\ 
+		\hline
+		A & $B_A$ & $D_A$ &  $MD_A$ \\ 
+		B & $B_B$ & $D_B$ &  $MD_B$ \\ 
+		\hline
+	\end{tabular}
+\end{center}
+
+$V_P=V_A+V_B = n_AB_A + n_B B_B$ \\
+$MD_P = \frac{V_A}{V_A+V_B} MD_A + \frac{V_B}{V_A+V_B}MD_B$ \\
+
+$\delta$ is the hedge ratio if bond A is used to hedge bond B  $MD_B-\delta MD_A=0$, then  $\delta = \frac{MD_B}{MD_A}$
+
+
