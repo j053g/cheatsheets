@@ -15,3 +15,24 @@ $F_T=e^{(r-y)T} S_0$
 The swap rate is a weighted average of forward rates: \\
 $r_s = \frac{\sum_{t=1}^{T}B_t f_t}{\sum_{u=1}^{T}B_u} = \sum_{t=1}^{T} w_t  f_t$ , 
 with the weights $w_t = \frac{B_t}{\sum_{u=1}^{T} B_u}$ \\
+
+Alternative method: $r_S=\frac{1-B_T}{\sum_{u=1}^{T}B_u}$ in the 3 year case: $r_S=\frac{1-B_3}{B_1+B_2+B_3}=\frac{1-1/(1+r_3)^2}{1/(1+r_1)+1/(1+r_2)^2+1/(1+r_3)^3}$ 
+
+
+\subsection*{R11Q1:Forward Interest Rates and Arbitrage }Question 1: 
+Problem is to find arbitrage from 2 spot rates and 1 forward rate, the general approach to solving this problem is to:
+1. Invest $x$ at spot rate, $r_1$
+2. Invest $y$ at spot rate, $r_2$
+3. Invest $z$ at 1-yr forward rate in year 1, $f_1$
+(a) Pays \$100 today and nothing in the future:
+$-x-y = 100$ |
+$(1 + r_1)x -z = 0$ |
+$(1 + r_2)^2y + (1 + f_1)z = 0$ then solve system to find amounts.
+
+\subsection*{R11Q3: Currency Forward}
+Suppose that USD/JPY is trading at 105, and the 1-year forward on USD/JPY
+is trading at 106. The risk-free rate in the US is 1\%, and in Japan it is 3\%.
+Construct an arbitrage strategy that gives you \$100 today and nothing in the
+future. {\bf solution}: Year 1 income in JPY = Year 1 liabilities in JPY
+$105\times 1.03 \times (x - 100) = 106 \times 1.01 \times x$
+Solving yields $x= 9922 USD$
