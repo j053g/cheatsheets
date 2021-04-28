@@ -23,16 +23,6 @@ Otherwise, the hedging is imperfect.
 
 \subsection*{Managing interest rate risk}
 
-{\bf Preliminaries } \\
-	 {\bf Modified Duration (MD) for discount bond $ B_t=\frac{1}{(1+y)^t} $ } $ MD(B_t) = -\frac{1}{B_t}\frac{dB_t}{dy} = \frac{t}{1+y}$  \\
-	 {\bf Macaulay Duration} is the weighted average term to maturity  $ D = \sum_{t=1}^{T} \left(   \frac{PV(CF_T)}{B}  t \right)  =   \frac{1}{B}\sum_{t=1}^{T} \left(  \frac{CF_t}{(1+y)^t} t \right)  $ \\
-	 {\bf Modified Duration} measures bond's interest rate risk by its relative price change with respect
-	to a unit change in yield (with a negative sign):  $ MD =  -\frac{1}{B}\frac{dB}{dy}  = \frac{D}{1+y}  $ \\
-	 {\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $ CX =  \frac{1}{2}\frac{1}{B}\frac{d^2B}{dy^2}  $ \\
-	$ CX = \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} \frac{t (t+1) CF_t}{(1+t)^t} =  \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} PV(CF_t) t (t+1)  $ \\
-	 {\bf Taylor series approximation of bond price changes}  $ \Delta B \approx  B \left(  -MD  \cdot \Delta y + CX \cdot ( \Delta y)^2 \right)    $ \\
-
-
 
 \begin{center}
 	\begin{tabular}{ |c|c|c|c| } 
@@ -51,3 +41,67 @@ $MD_P = \frac{V_A}{V_A+V_B} MD_A + \frac{V_B}{V_A+V_B}MD_B$ \\
 $\delta$ is the hedge ratio if bond A is used to hedge bond B  $MD_B-\delta MD_A=0$, then  $\delta = \frac{MD_B}{MD_A}$
 
 
+\section{From FMF I}
+
+\subsection*{Arbitrage Pricing}
+
+Example for three assets: riskless bonds pays \$100 in each state currently traded at $B1_0$, stock 1 pays off $[S1_1, S1_2, S1_3]$ and currently traded at $S1_0$, 
+stock 2 pays off $[S2_1, S2_2, S2_3]$ and currently traded at $S2_0$:
+$$
+\begin{pmatrix}
+	100 & 100 & 100   \\
+	S1_1 & S1_2 & S1_3 \\
+	S2_1 & S2_2 & S3_3 \\							
+\end{pmatrix} \cdot 
+\begin{pmatrix}
+	\phi_1 \\
+	\phi_2 \\
+	\phi_3 \\								
+\end{pmatrix}	
+=
+\begin{pmatrix}
+	B1_0\\
+	S1_0 \\
+	S2_0 \\								
+\end{pmatrix}
+$$ 
+solve system to find state prices $\phi_1$, $\phi_2$, $\phi_3$.	
+
+\subsection*{Interest Rate Risk measures}
+{\bf Modified Duration (MD) for discount bond $ B_t=\frac{1}{(1+y)^t} $ } $ MD(B_t) = -\frac{1}{B_t}\frac{dB_t}{dy} = \frac{t}{1+y}$  \\
+{\bf Macaulay Duration} is the weighted average term to maturity  $ D = \sum_{t=1}^{T} \left(   \frac{PV(CF_T)}{B}  t \right)  =   \frac{1}{B}\sum_{t=1}^{T} \left(  \frac{CF_t}{(1+y)^t} t \right)  $ \\
+{\bf Modified Duration} measures bond's interest rate risk by its relative price change with respect
+to a unit change in yield (with a negative sign):  $ MD =  -\frac{1}{B}\frac{dB}{dy}  = \frac{D}{1+y}  $ \\
+{\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $ CX =  \frac{1}{2}\frac{1}{B}\frac{d^2B}{dy^2}  $ \\
+$ CX = \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} \frac{t (t+1) CF_t}{(1+t)^t} =  \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} PV(CF_t) t (t+1)  $ \\
+{\bf Taylor series approximation of bond price changes}  $ \Delta B \approx  B \left(  -MD  \cdot \Delta y + CX \cdot ( \Delta y)^2 \right)    $ \\
+
+
+
+
+\subsection*{Growth Opportunities and Stock Valuation}
+
+\begin{itemize}
+	\item {\bf P/E and PVGO:} $ P_0 = \frac{EPS_1}{r} + PVGO $
+	\item {\bf if $PVGO=0$:} $ P/E = \frac{1}{r}  $
+	\item {\bf if $PVGO>0$:} $ P/E = \frac{1}{r} + \frac{PVGO}{EPS_2} > \frac{1}{r} $
+\end{itemize}
+Investment and Growth
+\begin{itemize}
+	\item {plow-back ratio} $b_t = 1-payout = 1-\frac{DIV}{EPS}$
+	\item {\bf Investments:} $ I_t = EPS_t \cdot b_t $
+	\item {\bf Next year earnings} $ EPS_{t+1} = EPS_t +ROI_t \cdot I_t $
+	\item {\bf Next year book value:} $ BVPS_{t+1} = BVPS_t + I_{t+1} $
+	\item {\bf Dividends:} $ D_t = EPS_t (1-b_t) $
+	\item {\bf Growh rate:} $g = b \cdot ROI$
+	\item  $V_{0,no inv t>0}=E_1/r$ , $NPV_1 = -E_1 + \frac{E_2-E_1}{r}$ ,  $V_0 = V_{0,no inv t>0}+\frac{NPV_1}{1+r}$		
+\end{itemize}
+
+
+\subsection*{NPV Rule}
+$NPV = CF_0 + \frac{CF_1}{1+r_1}+\frac{CF_2}{(1+r_2)^2} + \cdots + \frac{CF_T}{(1+r_T)^T} $
+
+	$CF = (1-\tau) (OperatingProfits) - CapEx + \tau \cdot Depreciation -\Delta WC $\\
+	$WC = Inventory + A/R - A/P$, $A/R : \text{Accounts Receivable}$, $A/P : \text{Accounts Payable}$
+	
+	
