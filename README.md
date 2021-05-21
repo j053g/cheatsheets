@@ -8,6 +8,18 @@ A mathematically rigorous framework to understand financial markets delivered wi
 * [Cheatsheet](15.415.1x/15.415.1x_finance_1.pdf)
 * OCW Equivalent: https://ocw.mit.edu/courses/sloan-school-of-management/15-401-finance-theory-i-fall-2008/index.htm
 
+## [Foundations of Modern Finance II](https://www.edx.org/course/foundations-of-modern-finance-ii)
+Learn fundamental principles of modern finance, including valuation models, methods for risk analysis, derivative instruments and investment management.
+
+* [Cheatsheet](15.415.1x/15.415.1x_finance_2.pdf)
+* OCW Equivalent: https://ocw.mit.edu/courses/sloan-school-of-management/15-401-finance-theory-i-fall-2008/index.htm
+
+## [Financial Accounting](https://www.edx.org/course/finance-accounting)
+How do investors, creditors, and other users analyze financial statements to assess corporate performance? Learn financial accounting, how to read financial statements, and how to gather inputs to valuation models.
+
+* [Cheatsheet](15.516x/15.516x_financial_accounting.pdf)
+* OCW Equivalent: https://ocw.mit.edu/courses/sloan-school-of-management/15-515-financial-accounting-fall-2003/
+
 
 ## General Advice for MITx Proctored Final Exams
 
