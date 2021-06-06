@@ -1,0 +1,61 @@
+\section*{Week 7: Long-Term Debt and Leases}
+
+\subsection*{Leases}
+
+
+	\begin{tabular}{ |c|c|c| } 
+	\hline
+	& Old Std $\leq$ 2018 & New Std $\geq$ 2019 \\ 
+	\hline
+	"Rental" & Operating & Operating \\ 
+	Accounting & Off B/S & On B/S \\ 
+	\hline
+	"Ownership" & Capital & Finance \\ 
+	Accounting & On B/S & On B/S \\ 
+	\hline
+	\end{tabular}
+
+\subsection*{Financial Lease} 
+
+ Both the asset and liability are valued at the PV of lease $n$ payments $pmt$ at interest rate $r$. \\
+ $PV_0\texttt{=PV(r,n,pmt)}$ 
+ 
+ When signing the lease:\\
+ 	\begin{tabular}{ |c||c|c| } 
+ 	\hline
+ 	Assets  & Liability  & S/E \\ 
+ 	Lease A & Lease L  &  \\ 
+ 	\hline
+ 	$PV_0$ & $PV_0$  &  \\ 
+ 	\hline
+ \end{tabular}
+
+During the lease (t-th period): \\
+ 	\begin{tabular}{ |c|c||c|c| } 
+	\hline
+	Assets  & & Liability  & S/E \\ 
+	Cash & -Acc Depr  & Lease L & Ret Earn  \\ 
+	\hline
+	$-pmt$ & & $-(pmt-r\cdot PV_{t-1})$ &  $-r\cdot PV_{t-1}$ \\
+	\hline
+	       & $\frac{PV_0}{n}$ &    & $-\frac{PV_0}{n}$  \\
+	\hline
+\end{tabular} 
+$pmt \neq LeaseExpense$. 
+the rest of the period the logic continues amortizing the lease liability, the lease expense uses the remaining lease balance, the lease asset is depreciated using straight-line.
+
+\subsection*{Operating Lease} 
+At the signing of lease is the same as financing leases. During the lease (t-th period): \\
+\begin{tabular}{ |c|c||c|c| } 
+	\hline
+	Assets  & & Liability  & S/E \\ 
+	Cash & Lease A  & Lease L & Ret Earn  \\ 
+	\hline
+	$-pmt$ &    & $-pmt$ &   \\
+	\hline
+           & $r \cdot PV_{t-1} -pmt$ & $r \cdot PV_{t-1}$      & $-pmt$  \\
+	\hline
+\end{tabular} \\
+$pmt = LeaseExpense$. This two line items can be combined.
+No amortization expense, the lease asset does not have an acc. amort. contra asset, both lease asset and liability amortize over time.
+
