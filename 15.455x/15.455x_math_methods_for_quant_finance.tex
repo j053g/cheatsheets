@@ -142,7 +142,7 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Week 5: Continuous-Time Finance (contd.)}\smallskip \hrule height 1pt \smallskip
+\section{Week 5: It\^{o} Calculus)}\smallskip \hrule height 1pt \smallskip
 
 \subsection{Black-Scholes equation}
 
@@ -163,6 +163,42 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 \end{description}
 
 
+
+\subsection{Recitation 5}
+
+\begin{description}[topsep=0pt]
+	\item[Expectations from Brownian integrals] ~
+	\begin{itemize}[topsep=0pt]
+		\item $ dB \sim N(0,dt) $
+		\item $  \int_{0}^{t} dB = B_t - B_0 \sim N(0,t ) $
+		\item $E[f(B_t-B_0)] = E[f(\sqrt{t} z)] = \frac{1}{\sqrt{2\pi}} \int e^{-z^2/2}f(\sqrt{t}z) dz$ 
+		\item Example  $E[f(B_t-B_0)] = E[(B_t-B_0)^4] = E[(\sqrt{t} z)^4] = t^2 E[z^4] = 3t^2 $ \\
+		
+		We can pull out $\sqrt{t}$,which is nonstochastic to get $t^2 E[z^4]$
+		, $E[z^4]$ is a well-known Gaussian integal that we use in the kurtosis=3.
+		\item Useful formula:  $E[e^{\alpha z + \beta}]  = e^{\alpha^2/2 + \beta}$
+	\end{itemize}
+\end{description}
+
+\section{Week 6: Continuous-Time Finance}\smallskip \hrule height 1pt \smallskip
+
+\subsection{It\^{o} processes in higher dimensions}
+
+\begin{description}[topsep=0pt]
+	\item[It\^{o}'s lemma: multiple stochastic variables] ~
+	\begin{itemize}[topsep=0pt]
+		\item  $ \text{d}X_i = a_i(t,X_1,X_2,...) \text{d}t+ b_i(t,X_1,X_2,...)\text{d} B_i $ \\
+		 $\text{d} F = \frac{\partial F}{\partial t} \text{d}t + \sum \frac{\partial F}{\partial X_i} \text{d}X_i + \frac{1}{2} \sum \rho_{ij} b_i b_j \frac{\partial ^2 F}{\partial X_i X_j} \text{d}t$ 
+		 \item Heuristics "rule of thum" for correlated Brownian motions : \\
+		    $ (\text{d}B_i)^2 \rightarrow \text{d}t $ , 
+		    $ (\text{d}B_i)(\text{d}B_j) \rightarrow \rho_{ij} \text{d}t$ ,\\ 
+		    $ (\text{d}X_i )^2 \rightarrow b^2_i \text{d}t $ ,
+		    $ (\text{d}X_i)(\text{d}X_j) \rightarrow \rho_{ij} b_i b_j \text{d} t $ 
+		 \item two stochastic variables case:  $\text{d}X_1 = a_1 \text{d}t + b_1 \text{d}B_1 $, $\text{d}X_2 = a_2 \text{d}t + b_2 \text{d}B_2 $ \\
+		 $\text{d}F =  \frac{\partial F}{\partial t} \text{d}t + \frac{\partial F}{\partial X_1} \text{d}X_1+ \frac{\partial F}{\partial X_2} \text{d}X_2 + \frac{b_1^2}{2}  \frac{\partial^2 F}{\partial X_1^2} + \frac{b_2^2}{2}  \frac{\partial^2 F}{\partial X_2^2} + b_1 b_2 \rho \frac{\partial^2 F}{\partial X_1 \partial X_2}  $
+		 
+	\end{itemize}
+\end{description}
 
 \newpage
 
