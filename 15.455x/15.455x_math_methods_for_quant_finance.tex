@@ -1,0 +1,195 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[plain]{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{palatino}
+\usepackage{multicol}
+\usepackage{blkarray}
+
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\usepackage{physics}
+\usepackage{latexsym, marvosym}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=0pt}
+\usepackage{xfrac}
+\usepackage[pdftex,
+            pdfauthor={Jose},
+            pdftitle={Mathematical Methods for Quantitative Finance},
+            pdfsubject={Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance},
+            pdfkeywords={finance} {cheatsheet} {pdf} {cheat} {sheet} {formulas} {equations}
+            ]{hyperref}
+\usepackage[
+            open,
+            openlevel=2
+            ]{bookmark}
+\usepackage{relsize}
+\usepackage{rotating}
+
+% for monospace font https://tex.stackexchange.com/questions/50810/good-monospace-font-for-code-in-latex
+\usepackage{inconsolata}
+
+
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+    \def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+    \copy0\kern-\wd0\mkern4mu\box0}} 
+            
+\newcommand{\noin}{\noindent}    
+\newcommand{\logit}{\textrm{logit}} 
+%\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}} 
+\newcommand{\corr}{\textrm{Corr}} 
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Bern}{\textrm{Bern}}
+\newcommand{\Bin}{\textrm{Bin}}
+\newcommand{\Beta}{\textrm{Beta}}
+\newcommand{\Gam}{\textrm{Gamma}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Pois}{\textrm{Pois}}
+\newcommand{\Unif}{\textrm{Unif}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\NBin}{\textrm{NBin}}
+\newcommand{\Hypergeometric}{\textrm{HGeom}}
+\newcommand{\HGeom}{\textrm{HGeom}}
+\newcommand{\Mult}{\textrm{Mult}}
+
+\geometry{top=.4in,left=.2in,right=.2in,bottom=.4in}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0ex}
+
+% -----------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\color{blue}\normalfont\normalsize\bfseries}
+{\color{blue}\thesection}{0em}{}
+\titleformat{\subsection}
+{\color{violet}\normalfont\normalsize\bfseries}
+{\color{violet}\thesection}{1em}{}
+% Comment out the above 5 lines for black and white
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{1pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    {\color{blue} \Large{\textbf{Mathematical Methods for Quantitative Finance}}} 
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ATTRIBUTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\scriptsize
+
+Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN CHEATSHEET
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Week 5: Continuous-Time Finance (contd.)}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Black-Scholes equation}
+
+\begin{description}[topsep=0pt]
+	\item[Summary of some key formulas] ~
+	\begin{itemize}[topsep=0pt]
+	 \item It\^{o} process: $\text{d}X = a \text{d}t+b \text{d}B$\
+     \item It\^{o} formula: \begin{align*}
+     	\text{d}F &= \frac{\partial F}{\partial t} \text{d}t + \frac{\partial^2 F}{\partial X^2} \text{d}X + \frac{b^2}{2} \frac{\partial F}{\partial X} \text{d}t \\
+ 	         	&=   \Bigg( \frac{\partial F}{\partial t} +a \frac{\partial F}{\partial X} + \frac{b^2}{2} \frac{\partial^2 F}{\partial X^2} \Bigg) \text{d}t + b \frac{\partial F}{\partial X} \text{d}B   
+ \end{align*}
+      
+      \item Stock price: $\text{d}S = \mu S \text{d}t + \sigma \text{d}B \implies \text{d}(\text{log } S) = \Big(\mu - \frac{\sigma^2}{2} \Big) \text{d}t + \sigma \text{d}B$
+      \item Black-Scholes:  $\Delta = \partial V / \partial S$ , $\text{d}\pi=r \pi \text{d}t$  ,
+   
+      $$ \frac{\partial V}{\partial t} + \frac{\sigma^2 S^2}{2} \frac{\partial ^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} -rV =0 $$ 
+	\end{itemize}
+\end{description}
+
+
+
+\newpage
+
+\section{Recommended Resources} \smallskip \hrule height 1pt \smallskip
+
+\bigskip
+
+\begin{itemize}
+\item MITx 15.455x 
+MITx 15.455x
+Mathematical Methods for Quantitative Finance [Lecture Slides] (\url{https://learning.edx.org/course/course-v1:MITx+15.455x+3T2020/home})
+
+\item Tsay, Analysis of Financial Time Series (3e), Wiley. (Tsay)
+\item Capinski and Zastawniak, Mathematics for Finance, Springer. (CZ)
+\item Olver, Introduction to Partial Differential Equations (2016), Springer. (Olver)
+\item Campbell, Lo, and MacKinlay, Econometrics of Financial Markets (1997), Princeton. (CLM)
+\item Lang, Introduction to Linear Algebra (2e), Springer (Lang)
+\item Axler, Linear Algebra Done Right (3e), Springer (Axler)
+\item LaTeX File (\texttt{\href{https://github.com/j053g/cheatsheets/blob/main/15.455x_math_methods_for_quant_finance.tex}{github.com/j053g/cheatsheets/15.455x}})
+\end{itemize}
+
+\begin{center}
+	\emph{Last Updated \today}
+\end{center}
+
+\end{multicols*}
+
+
+
+\end{document}

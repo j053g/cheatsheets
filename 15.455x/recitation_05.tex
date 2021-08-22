@@ -1,0 +1,396 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{inputenc}
+\usepackage{geometry} 
+\usepackage{cancel}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+	
+	\title{MITx 15.455x Mathematical Methods for Quantitative Finance
+	 \\
+	\begin{large} 
+		Recitation 5
+	\end{large} }
+
+	
+	\maketitle
+	
+	\section*{Module 2: Expectations from Browninan integrals}
+	
+Let's look at more expectations involving
+our stochastic processes.
+We know that $dB$ is a Gaussian random variable
+with a mean $0$ and variance $dt$.
+
+$$ dB \sim N(0,dt) $$
+
+We also know that if we integrate $\int_{0}^{t} dB$ , and for convenience, I can write this as:
+
+$$  \int_{0}^{t} dB = B_t - B_0 \sim N(0,t ) $$
+
+
+Let's agree that $B_0=0$. 
+
+So since that is the case, we have an easy way that we can write things.
+We know that the expectation of $B$ is going to be 0.
+We know that its variance is going to be $t$.
+
+
+So let's just replace the random variable $B_t-B_0$ by $\sqrt{t}z$ where $z \sim N(0,1)$
+
+
+Where $z$ doesn't have any time dependence.  So that's just simplifying things and putting everything
+in an even more standard form. But it also makes explicit the time dependent.
+And it's the scaling with time that's going to be important for a lot of financial applications, and for risk management.
+So, what that means is that any time
+where we see a $B_t$, or a $B_t$ minus $B_0$,
+we can replace it by that function.
+So if we want to compute the expectation of some function, we can just write: $$E[f(B_t-B_0)] = E[f(\sqrt{t} z)]$$  and compute that.
+
+And remember, these are our Gaussian intervals. So we just need to do an integral. That's all it is. So this is equal:
+
+ $$E[f(B_t-B_0)] = E[f(\sqrt{t} z)] = \frac{1}{\sqrt{2\pi}} \int e^{-z^2/2}f(\sqrt{t}z) dz$$ 
+
+Easy.
+
+So for example, suppose we wanted to compute the expectation of the fourth power.
+ $$ f(x) = x^4$$
+So we'd like to compute:
+
+ $$E[f(B_t-B_0)] = E[(B_t-B_0)^4] = E[(\sqrt{t} z)^4] = t^2 E[z^4] = 3t^2 $$ 
+
+We can pull out $\sqrt{t}$,which is nonstochastic to get $t^2 E[z^4]$
+, $E[z^4]$ is a well-known Gaussian integal that we use in the kurtosis.
+It's just equal to 3.
+
+All right.
+
+So this way of standardizing things and writing things
+in terms of $z$ when we work in the integral form,
+when we integrate our processes, is very convenient.
+Let's do an example, and I want to review
+a very useful trick with you.
+So let's take a look.
+
+\subsection*{Example}
+Suppose we wanted to compute
+$$ E[e^{6X}] \text{ where }  dX = \mu dt + \sigma dB $$  
+
+where $dX$, let's just say it's ordinary Brownian motion.
+
+
+OK, because it's on this form, you can integrate as:
+
+$$ \text{integrate:}  X_t-X_0 = \mu t + \sigma \sqrt{t} z $$
+
+So if we go to compute the expectation :
+
+$$ E[e^{6(\mu t + \sigma \sqrt{t} z)}] = e^{6\mu t}  E[e^{6 \sigma \sqrt{t} z}]  $$
+
+
+\subsubsection*{Useful Formula}
+
+
+
+Suppose that we have $E[e^{\alpha z + \beta}]$. And this shows up a lot in particular in asset
+pricing formulas.
+So this is clearly equal to
+
+$$ $$ 
+
+\begin{equation*} 
+	\begin{split}
+		E[e^{\alpha z + \beta}]  & = e^{\beta} E[e^{\alpha z }]  \\
+                                 & = \frac{e^{\beta}}{\sqrt{2 \pi}} \int e^{-z^2/2}e^{\alpha z} dz \\
+                                 & = \frac{e^{\beta}}{\sqrt{2 \pi}} \int e^{-z^2/2 + \alpha z - \alpha^2/2 + \alpha^2/2 } dz \\
+                                 & = \frac{e^{\beta}}{\sqrt{2 \pi}} \int e^{-(z^2 - 2 \alpha z + \alpha^2)/2 + \alpha^2/2 } dz \\
+                                 & = \frac{e^{\beta}}{\sqrt{2 \pi}} \int e^{-(z-\alpha)^2/2 + \alpha^2/2} dz \\
+                                  & = e^{\beta+ \alpha^2/2} \Big[\frac{1}{\sqrt{2 \pi}} \int e^{-(z-\alpha)^2/2 } dz \Big]
+	\end{split}
+\end{equation*}
+
+We do the Gaussian integral, with the trick of completing the square in the exponent.
+And because the integral goes from minus infinity to infinity, the difference in the exponential between $z$ 
+and $z-\alpha$ makes no difference at all.
+If you'd like, you can shift the variable of integration.
+The integral inside the square brackets
+with $\frac{1}{\sqrt{2 \pi}}$ in front is equal to 1.
+So our final result, our final useful formula, is that:
+
+$$ E[e^{\alpha z + \beta}]  = e^{\beta+ \alpha^2/2}$$
+
+Now, let's apply that to our example.
+
+$$	E[e^{6X}]   = E[e^{ 6\mu t + 6 \sigma \sqrt{t} z}]   $$
+
+
+with $\alpha=6 \sigma \sqrt{t}$ and $\beta = 6 \mu t$ , we apply $ E[e^{\alpha z + \beta}]  = e^{\beta+ \alpha^2/2}$
+
+
+\begin{equation*} 
+	\begin{split}
+		E[e^{6X}] &= e^{6 \mu t + (6 \sigma \sqrt{t})^2/2}  \\
+	    &= e^{6 \mu t + 18 \sigma^2 t}  
+	\end{split}
+\end{equation*}
+
+
+So there's our answer for finding this expectation.
+And this works, generally, for a larger class
+of functions that show up for different kinds of Ito
+processes.
+
+
+	\section*{Module 3: Solutions to the diffusion equation}
+
+Let's take a closer look at the diffusion equation. So the general diffusion equation is given right here.
+
+So we say that we have a function $p(z,t)$,
+$$ p(z,t) = \int p_0(z-w,t)f(w)dw $$
+
+and they need to satisfy this differential equation.
+$$ \frac{\partial p}{\partial t} - \frac{1}{2} \frac{\partial ^2 p}{\partial z^2} = 0 $$
+
+And we've seen that there's a very special solution, $p_0$, that satisfies that equation, which
+we can find by plugging it in and taking some derivatives. So here's our $p_0$.
+
+
+$$ p_0 = \frac{1}{\sqrt{2 \pi t}} e^{-\frac{z^2}{2t}} $$
+
+
+
+Now, I claimed that if we construct this integral on top,
+that this is the solution to the equation.
+So what I'd like to do is, let's check that,
+and then let's apply it.
+So the first thing to do is to check it.
+And the way we do it is we take derivatives.
+And what we find is that if we take that integral expression,
+and we stick it into the differential equation, what
+we'll do is, we'll move the differential operators inside.
+So for example,
+
+
+
+
+$$ \frac{\partial}{\partial t} p(z,t) = \int \frac{\partial}{\partial t} \Big[  p_0(z-w,t)f(w)dw \Big] $$
+
+
+But where is the $t$ dependence?
+The $t$ dependence is only in one place.
+It's in $p_0$.
+
+And similarly,
+
+
+$$ \Big( \frac{\partial}{\partial t} -\frac{1}{2} \frac{\partial^2}{\partial z^2} \Big)p(z,t) = \int  \Big[  \frac{\partial}{\partial t} -\frac{1}{2} \frac{\partial^2}{\partial z^2}  \Big]  p_0(z-w,t)f(w)dw $$
+
+
+\subsection*{Exercise}
+
+
+Suppose that 
+
+$$ f(z) = z^2 $$
+$$ p(z,0) = z^2 $$
+$$ \text{find } p(z,t) $$
+
+So what we need to do is, we've got a formula.
+Let's just plug and chug.
+
+
+
+\begin{equation*} 
+	\begin{split}
+		p(z,t) &= \int p_0(z-w,t)f(w)dw  \\
+		       &= \int  \frac{1}{\sqrt{2 \pi t}} e^{-\frac{(z-w)^2}{2t}} w^2 dw  
+	\end{split}
+\end{equation*}
+
+
+Remember, it's a Gaussian where the variance is $t$.
+So it's not completely standardized.
+So there is $t$ dependence in this.
+How do we do this integral?
+Well, let's change variables. So what we'd like to do is, let's simplify the exponent
+and pick a new variable.
+
+$$ \text{let } u=\frac{w-z}{\sqrt{t}}  \implies  du=\frac{dw}{\sqrt{t}} $$
+$$ \implies  w=u \sqrt{t} + z $$
+
+So let's make those substitutions.
+
+
+
+\begin{equation*} 
+	\begin{split}
+		p(z,t) &=   \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} (u \sqrt{t} + z)^2 du 
+	\end{split}
+\end{equation*}
+
+
+Because now we almost have things in standardized form
+for a Gaussian interval, let's just expand that out.
+
+\begin{equation*} 
+	\begin{split}
+		p(z,t) &=   \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} (u^2t + 2u \sqrt{t}z + z^2) du  \\	
+		 &=   t \Big[\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} u^2 \Big] + 0 + 
+		 z^2 \cancelto{1}{\Big[\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} u^2 \Big]}
+	\end{split}
+\end{equation*}
+
+Let's look at each of these terms.
+The first term,  is going to be $u^2t$.
+Remember, $t$ is a constant with respect
+to the variable of integration.
+The second term, $ 2u \sqrt{t}z$, is going to vanish.
+Because it's linear in $u$, this is an odd function in $u$.
+We're going from minus infinity to infinity.
+And odd functions are going to have varnishing integrals.
+It's just a plus sign to the minus sign
+are going to cancel each other out.
+And then, the last term, $z^2$, that's just going to be multiplied by a constant a constant equal to 1.
+
+Because $\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} u^2$ is just the variance
+of the standardized Gaussian distribution.
+
+So we do the integrals. And what we're left with is :
+
+	$$ p(z,t) = z^2+t $$
+	
+
+And we can check that it satisfies our differential
+equation.
+
+$$ \frac{\partial p}{\partial t} = 1 \text{ , } \frac{1}{2} \frac{\partial ^2 p}{\partial z} = 1 $$
+
+And if we subtract the two of them, we get 0.
+So we're done.
+So this is the answer.
+Let's do one more exercise.
+
+\subsection*{Exercise}
+
+Slightly different version of the one that we did in lecture.
+But now, don't refer back to the lecture.
+Just take a look at what we've done for the integrals.
+And do this one yourself.
+So what I'd like to do is introduce the Gaussian
+cumulative distribution function,
+which is going to be useful and show up in a few places.
+I will call this $\Phi(x)$.
+It's going to be defined as:
+
+$$ \Phi(x) =  \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{x} e^{-z^2/2} dz = Prob(Z<x) $$
+
+
+So I compute the left side of the integral
+of the bell curve for the Gaussian distribution
+up to some point $x$.
+So in terms of Gaussian probabilities,
+this is the same thing as the probability
+that a Gaussian random variable $Z$ is less
+than some particular value $x$.
+Now, from the fundamental theorem of calculus of course,
+I know that :
+
+$$ \frac{d}{dx}\Phi(x) =  \frac{1}{\sqrt{2 \pi}} e^{-x^2/2} $$
+
+
+So I can differentiate or I can integrate.
+I can go back and forth.
+But this basic idea that it's an incomplete integral.
+So I integrate from minus infinity
+up to a particular value $x$ that's defined out here.
+It's going to be useful, and we'll
+see that it shows up in a bunch of places.
+Here's a really simple example.
+
+
+\begin{equation*}
+	f(w) =
+	\begin{cases}
+		1 & \text{if $w<\kappa$ }\\
+		0 & \text{if $w>\kappa$}
+	\end{cases}       
+\end{equation*}
+
+$ f(w) = p(w,0)$  find $p(z,t)$
+
+So the question is, find $p(z,t)$,
+
+So at time 0, it's a step function.
+It's either 0 or 1 depending on the value of its argument.
+
+So what we'd like to do is, we want to find $p(z,t)$
+for the general case.
+So take a moment, see if you can work it out
+from our general definition.
+
+
+
+
+Remember that our definition is, we integrate $p_0$
+against $p_0$ evaluated at $z-2$ against the function $f(w)$.
+And we integrate that over $w$ in an explicit expression
+in terms of $z$.
+Go take a moment to do that.
+And then, we'll take a look at this together.
+
+OK?
+Let's go.
+Let's just work from the definition.
+The reason why this is particularly nice
+is the integrand is either 1 or 0.
+So there's an interesting generalization
+that's important for the Black-Scholes case, where
+we might-- instead of 1 or 0, we might
+like to let it be 0 in the lower case, but $\kappa-w$
+in the upper case.
+So after you've done this one, I'd
+suggest trying that one as an extension.
+But this one's fairly straightforward.
+So let's do this one together just
+to make sure we've got the concepts and our definitions
+of the integral.
+
+
+So this is going to be: 
+
+$$	p(z,t) =    \int_{-\infty}^{\kappa} \frac{1}{\sqrt{2 \pi t}} e^{-\frac{(z-w)^2}{2t}} dw  $$
+
+$$ \text{let } u = \frac{w-z}{\sqrt{t}}  \implies du = \frac{dw}{\sqrt{t}}$$
+
+In addition, our upper limit of integration is $w=\kappa$.
+And that's going to translate into an upper limit of 
+$$u* = \frac{\kappa-z}{\sqrt{t}} $$
+
+So, now we have:
+
+\begin{equation*} 
+	\begin{split}
+		p(z,t) &=   \int_{-\infty}^{\frac{\kappa-z}{\sqrt{t}}} \frac{1}{\sqrt{2 \pi }} e^{-\frac{u^2}{2}} du \\	
+		&=   \Phi \Big(\frac{\kappa-z}{\sqrt{t}} \Big)
+	\end{split}
+\end{equation*}
+
+Which is a very well behaved function
+for positive values of $t$.
+And it would be interesting to take a look
+and plot this as t goes to 0.
+But right now, we have the result that we saw it.
+And we can check this, again, by differentiating and putting it
+into the differential equation, and verifying that it satisfies
+the equation, and verifying that it
+satisfies the initial conditions a $t$ equals 0.
+Which as I said, it requires taking a limit,
+because we can't immediately set $t$ equals 0
+in this case in the way we did previously.
+
+	
+\end{document}
