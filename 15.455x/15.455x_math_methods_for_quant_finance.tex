@@ -142,7 +142,30 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Week 5: It\^{o} Calculus)}\smallskip \hrule height 1pt \smallskip
+
+
+\section{Week 2: Stochastic Processes}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Time series models}
+
+\begin{description}[topsep=0pt]
+	\item[Time series models] ~
+	\begin{itemize}[topsep=0pt]
+		\item a ts process is \textbf{stationary} if the join distribution of all of its values is invariant under time translation.
+		\item a ts is \textbf{weakly stationary} if the first and second moments are invariant.
+		\item MA(1): $r_t = \mu + \sigma z_t + \phi z_{t-1}$ 
+		\item AR(p): $R_t = c_0+c_1 R_{t-1} + \dots + c_p R_{t-p} + \sigma z_t, z_t \sim IID(0,1) $
+		\item ARMA(p,q): 
+		$R_t = c_0 + c_1 R_{t-1} + \dots + c_p R_{t-p} + \sigma z_t + \phi_1 z_{t-1} + \dots + \phi_q z_{t-q}$
+		\item AR(1) used for \textbf{mean reversion}:  $R_t = c_0 + c_1 R_{t-1} + \sigma z_t$ , $E[R_t]=\frac{c_0}{1-c_1}$, for convenience: $\mu = \frac{c_0}{1-c_1}$, $\lambda = -c_1$. Then: $R_t-\mu = -\lambda (R_t-\mu) + \sigma z_t $, $|\lambda | <1$. 
+		$Var[R_t] = \gamma_0 = \frac{\sigma^2}{1-\lambda^2}$ . \\
+		Lag-$k$ autocovariance coefficient: $\gamma_k=(-\lambda)^k \gamma_0 = \frac{(-\lambda)^k}{1-\lambda^2} \sigma^2$
+	\end{itemize}
+\end{description}
+
+
+
+\section{Week 5: It\^{o} Calculus}\smallskip \hrule height 1pt \smallskip
 
 \subsection{Black-Scholes equation}
 
@@ -195,10 +218,19 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 		    $ (\text{d}X_i )^2 \rightarrow b^2_i \text{d}t $ ,
 		    $ (\text{d}X_i)(\text{d}X_j) \rightarrow \rho_{ij} b_i b_j \text{d} t $ 
 		 \item two stochastic variables case:  $\text{d}X_1 = a_1 \text{d}t + b_1 \text{d}B_1 $, $\text{d}X_2 = a_2 \text{d}t + b_2 \text{d}B_2 $ \\
-		 $\text{d}F =  \frac{\partial F}{\partial t} \text{d}t + \frac{\partial F}{\partial X_1} \text{d}X_1+ \frac{\partial F}{\partial X_2} \text{d}X_2 + \frac{b_1^2}{2}  \frac{\partial^2 F}{\partial X_1^2} + \frac{b_2^2}{2}  \frac{\partial^2 F}{\partial X_2^2} + b_1 b_2 \rho \frac{\partial^2 F}{\partial X_1 \partial X_2}  $
+		 $\text{d}F =  \frac{\partial F}{\partial t} \text{d}t + \frac{\partial F}{\partial X_1} \text{d}X_1+  \frac{\partial F}{\partial X_2} \text{d}X_2 + \Big( \frac{b_1^2}{2}  \frac{\partial^2 F}{\partial X_1^2} + \frac{b_2^2}{2}  \frac{\partial^2 F}{\partial X_2^2} + b_1 b_2 \rho \frac{\partial^2 F}{\partial X_1 \partial X_2} \Big) \text{d}t $
+		 \item example: $F=X1X2 \implies \text{d}F = X1 \text{d} X_2 + X_2 \text{d} X_1 + \rho b_1 b_2 \text{d} t $ \\
+		 since $(\text{d}X_i)(\text{d}X_j) \rightarrow \rho_{ij} b_i b_j \text{d} t \implies \text{d}F = X1 \text{d} X_2 + X_2 \text{d} X_1 + \text{d}X_1 \text{d}X_2 $
 		 
 	\end{itemize}
 \end{description}
+
+\section{Useful formulas}\smallskip \hrule height 1pt \smallskip
+
+$\operatorname{Cov}(aX+bY,Z) = a \operatorname{Cov}(X,Z)+b \operatorname{Cov}(Y,Z) $ \\
+$\operatorname{Var}(aX+bY)=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\, \operatorname{Cov}(X,Y)$
+$\operatorname{Var}(aX-bY)=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)-2ab\, \operatorname{Cov}(X,Y)$
+
 
 \newpage
 
