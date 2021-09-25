@@ -143,6 +143,43 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Week 1: Probability}\smallskip \hrule height 1pt \smallskip
+
+The \textbf{moments} of a distribution are the expectation of powers of the r.v.
+$ \mu_l = E[X^l] = \sum_k x_k^l p(x_k) = \int x_l p(x)dx$
+
+\subsection{Common distributions}
+\begin{description}[topsep=0pt]
+	\item[Common distributions] ~
+	\begin{itemize}[topsep=0pt]
+		\item \textbf{Uniform distribution}: 
+			$
+			p(x) = \begin{cases}
+				1, x \in [0,1] \\
+				0, \text{otherwise}
+			\end{cases}$ 
+			, $\operatorname{Prob}(a<X<b)=b-a$
+			$\mu = \int_{\infty}^{\infty}x p(x) \text{d}x= \int_{0}^{1} x \text{d}x = \frac{1}{2}$, 
+			$\sigma^2 = \int_{\infty}^{\infty}(x-\frac{1}{2})^2 \text{d}x= \frac{1}{12} $	
+			$u_l= \int_{0}^{1}x_l dx= \frac{1}{l}$ 
+		\item \textbf{Binomial distribution}:
+			$f(x;n,p) = {n \choose k} p^k q^{n-k} = \frac{n!}{k!(n-k)!} p^k q^{n-k} $, 
+			$\mu = np$, $\sigma^2 = npq$
+		\item \textbf{Gaussian distribution}:
+			$p(x) - \frac{1}{\sqrt{2 \pi \sigma ^2}} e^{- \frac{1}{2} \big(\frac{x-\mu}{\sigma} \big)^2}$ ,
+			$ \Phi(x) = Prob(Z<x) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{x} e^{-z^2/2} dz   $
+	\end{itemize}
+\end{description}
+
+
+
+
+
+
+
+
+\textbf{Poisson distribution}
+
 
 \section{Week 2: Stochastic Processes}\smallskip \hrule height 1pt \smallskip
 
@@ -163,7 +200,19 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 	\end{itemize}
 \end{description}
 
+\section{Week 3: Time Series Models}\smallskip \hrule height 1pt \smallskip
 
+
+\begin{description}[topsep=0pt]
+	\item[Gambler's Ruin] ~
+	\begin{itemize}[topsep=0pt]
+		\item Repeated set of gambles with probability of success $p$ and of failure $q=1-p$
+		\item initial capital is $x>0$, total capital $a$. Stop when winning $a$ or \textbf{ruin} as $x=0$.
+		\item $Q_x$ is \textbf{probability of ruin} starting from capital $x$: $Q_x=pQ_{x+1} + p Q_{x-1}$.
+		\item $Q_x = \frac{(q/p)^a-(q/p)^x}{(q/p)^a-1}$, if $p=q=1/2$, then:  $Q_x=1-\frac{x}{a}$
+		
+	\end{itemize}	
+\end{description}
 
 \section{Week 5: It\^{o} Calculus}\smallskip \hrule height 1pt \smallskip
 
@@ -210,18 +259,71 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 \begin{description}[topsep=0pt]
 	\item[It\^{o}'s lemma: multiple stochastic variables] ~
 	\begin{itemize}[topsep=0pt]
-		\item  $ \text{d}X_i = a_i(t,X_1,X_2,...) \text{d}t+ b_i(t,X_1,X_2,...)\text{d} B_i $ \\
+		\item  $ \text{d}X_i = a_i(t,X_1,X_2,...) \text{d}t+  b_i(t,X_1,X_2,...)\text{d} B_i $ \\
 		 $\text{d} F = \frac{\partial F}{\partial t} \text{d}t + \sum \frac{\partial F}{\partial X_i} \text{d}X_i + \frac{1}{2} \sum \rho_{ij} b_i b_j \frac{\partial ^2 F}{\partial X_i X_j} \text{d}t$ 
 		 \item Heuristics "rule of thum" for correlated Brownian motions : \\
 		    $ (\text{d}B_i)^2 \rightarrow \text{d}t $ , 
 		    $ (\text{d}B_i)(\text{d}B_j) \rightarrow \rho_{ij} \text{d}t$ ,\\ 
 		    $ (\text{d}X_i )^2 \rightarrow b^2_i \text{d}t $ ,
 		    $ (\text{d}X_i)(\text{d}X_j) \rightarrow \rho_{ij} b_i b_j \text{d} t $ 
-		 \item two stochastic variables case:  $\text{d}X_1 = a_1 \text{d}t + b_1 \text{d}B_1 $, $\text{d}X_2 = a_2 \text{d}t + b_2 \text{d}B_2 $ \\
-		 $\text{d}F =  \frac{\partial F}{\partial t} \text{d}t + \frac{\partial F}{\partial X_1} \text{d}X_1+  \frac{\partial F}{\partial X_2} \text{d}X_2 + \Big( \frac{b_1^2}{2}  \frac{\partial^2 F}{\partial X_1^2} + \frac{b_2^2}{2}  \frac{\partial^2 F}{\partial X_2^2} + b_1 b_2 \rho \frac{\partial^2 F}{\partial X_1 \partial X_2} \Big) \text{d}t $
+		\item two stochastic variables case:  $\text{d}X_1 = a_1 \text{d}t + b_1 \text{d}B_1 $, $\text{d}X_2   = a_2 \text{d}t + b_2 \text{d}B_2 $ \\
+			 $\text{d}F =  \frac{\partial F}{\partial t} \text{d}t + \frac{\partial F}{\partial X_1} \text{d}X_1+  \frac{\partial F}{\partial X_2} \text{d}X_2 + \Big( \frac{b_1^2}{2}  \frac{\partial^2 F}{\partial X_1^2} + \frac{b_2^2}{2}  \frac{\partial^2 F}{\partial X_2^2} + b_1 b_2 \rho \frac{\partial^2 F}{\partial X_1 \partial X_2} \Big) \text{d}t $
+		 \item With two random variables, Ito's formula for $F(t, X, Y)$ is:
+			$dF = \frac{\partial F}{\partial t} dt + \frac{\partial F}{\partial X} dX + \frac{\partial F}{\partial Y} dY + \frac{1}{2} \frac{\partial^2 F}{\partial X^2} (dX)^2  +  \frac{1}{2} \frac{\partial^2 F}{\partial Y^2} (dY)^2 + \frac{\partial^2 F}{\partial X \partial Y} (dX)(dY)
+			$
 		 \item example: $F=X1X2 \implies \text{d}F = X1 \text{d} X_2 + X_2 \text{d} X_1 + \rho b_1 b_2 \text{d} t $ \\
 		 since $(\text{d}X_i)(\text{d}X_j) \rightarrow \rho_{ij} b_i b_j \text{d} t \implies \text{d}F = X1 \text{d} X_2 + X_2 \text{d} X_1 + \text{d}X_1 \text{d}X_2 $
+
+	\end{itemize}
+\end{description}
+
+\section{Week 8: Optimization}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Portfolio Optimization}
+
+\textbf{Portfolio risk} :  $\sigma_p^2 = \vec{\mathbf{w}}^{\top} C \vec{\mathbf{w}} = \sum w_i^2 \sigma_i^2 + 2 \sum_{i<j}w_i w_j \sigma_i \sigma_j \rho_{ij}$ \\ $\vec{\bf{w}} = \left(w_1 \hspace{2mm} w_2 \hspace{2mm} ... \hspace{2mm} w_n\right)^\top$
+
+\begin{description}[topsep=0pt]
+	\item[Portfolio optimization with budget] ~	
+	\begin{itemize}[topsep=0pt]
+		\item  
+		$\mathcal{L}(\vec{\mathbf{w}}, \ell) = \frac{1}{2} \vec{\mathbf{w}}^{\top} C \vec{\mathbf{w}} + \ell (1 - \vec{\iota}^\top \vec{\mathbf{w}}^\top ) $ 
+		\item Vary the weights: $\frac{\partial{\mathcal{L}}}{\partial{w_i}} = \left(\sum_{j \in [n]}{C_{ij}w_j}\right) - \ell\iota_i = 0$
+		\item Solve for the weights by inverting matrix: 
+		 $C\vec{\bf{w}} - \ell \vec{\iota} =0 \implies \vec{\bf{w}} = \ell  C^{-1} \vec{\iota} $
+		\item Solve Lagrande multiplier : $ \vec{\iota}^\top \vec{\bf{w}} = 1 =\ell ( \vec{\iota}^\top C^{-1} \vec{\iota} ) \implies \ell = \frac{1}{ \vec{\iota}^\top C^{-1} \vec{\iota}} $  
+		\item Solution: $\vec{\bf{w}}_{min} = \ell  C^{-1} \vec{\iota} = \frac{C^{-1} \vec{\iota}}{\vec{\iota}^\top C^{-1} \vec{\iota}}$ , $\hspace{2mm}$
+		   $\sigma^2_{min} = \ell = \frac{1}{ \vec{\iota}^\top C^{-1} \vec{\iota}} $
+		
+		
+	\end{itemize}
+\end{description}
+
+\begin{description}[topsep=0pt]
+	\item[Portfolio optimization with budget and return constraint] ~ 
+	 generalized to $\sum_i {w_i} = w_p$ 
+	\begin{itemize}[topsep=0pt]
+		\item  
+		 $\mathcal{L}(\vec{\mathbf{w}}, \ell, m) = \frac{1}{2} \vec{\mathbf{w}}^{\top} C \vec{\mathbf{w}} + \ell (w_p - \vec{\iota}^\top\vec{\mathbf{w}} ) + m(\mu_p - \vec{\mu}^\top \vec{\mathbf{w}} )$ 
+		 \item Vary the weights: 
+		 $\frac{\partial{\mathcal{L}}}{\partial{w_i}} = \left(\sum_{j \in [n]}{C_{ij}w_j}\right) - \ell\iota_i-m\mu_i $
+		 \item Solve for the weights:   $C\vec{\bf{w}} - \ell \vec{\iota} - m \vec{\mu} = {\bf{0}}  \implies $ 
+		 $\vec{\bf w}=C^{-1}(l\vec{\iota}+m \vec{\mu})$
+		 \item Solve for Langrange multipliers with constraints:  $ \vec{\iota}^\top\vec{\mathbf{w}} =w_p$ and  $\vec{\mu}^\top \vec{\mathbf{w}}=\mu_p$ 
+		 $ 	w_p = \vec{\iota}^\top \vec{\mathbf{w}} = \ell(\vec{\iota}^{\top} C^{-1} \vec{\iota}) + m (\vec{\mu}^{\top} C^{-1} \vec{\iota}) $ \\
+		 $ \mu_p = \vec{\vec{\mu}}^\top \vec{\mathbf{w}} = \ell (\vec{\mu}^{\top} C^{-1} \vec{\iota}) + m (\vec{\mu}^{\top} C^{-1} \vec{\mu})$ \\as
+		 as matrix equation: $\begin{pmatrix} w_p \\ \mu_p \end{pmatrix} = M\begin{pmatrix} \ell \\ m \end{pmatrix}$ 
+		 , where : $  M = \begin{pmatrix} a & b \\ b & c \end{pmatrix} $ \\
+		 $a \equiv \vec{\iota}^{\top} C^{-1} \vec{\iota} $,  $b \equiv \vec{\mu}^{\top} C^{-1} \vec{\iota}$,  $c \equiv \vec{\mu}^{\top} C^{-1} \vec{\mu}$.
+		 \item Solve for Langrange multiplier by inverting $M$: $\begin{pmatrix} \ell \\ m  \end{pmatrix} = M^{-1}\begin{pmatrix} w_p \\ \mu_p\end{pmatrix}$ \\
+		 $M^{-1} = \frac{1}{ac-b^2}\begin{pmatrix} c & -b \\ -b & a \end{pmatrix}$, $\ell = \frac{cw_p-b\mu_p}{ac-b^2} \hspace{2mm} \text{and} \hspace{2mm} m = \frac{-bw_p+a\mu_p}{ac-b^2} .$
 		 
+		 \item Solution : 
+		 	$\sigma^2_p  = \begin{pmatrix} \ell & m \end{pmatrix} M \begin{pmatrix} \ell \\ m \end{pmatrix} $ 
+		 	$ = \left(\frac{cw_p-b\mu_p}{ac-b^2} \hspace{5mm} \frac{-bw_p+a\mu_p}{ac-b^2}\right) \begin{pmatrix} w_p \\ \mu_p \end{pmatrix}$ \\
+		 	$ = \frac{1}{ac - b^2} \cdot (a \mu_p^2 - 2b w_p \mu_p + c w_p^2)$.
+		
+
 	\end{itemize}
 \end{description}
 
@@ -230,6 +332,7 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 $\operatorname{Cov}(aX+bY,Z) = a \operatorname{Cov}(X,Z)+b \operatorname{Cov}(Y,Z) $ \\
 $\operatorname{Var}(aX+bY)=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\, \operatorname{Cov}(X,Y)$
 $\operatorname{Var}(aX-bY)=a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)-2ab\, \operatorname{Cov}(X,Y)$
+$\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$
 
 
 \newpage
