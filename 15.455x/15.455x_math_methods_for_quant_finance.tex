@@ -145,10 +145,27 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 
 \section{Week 1: Probability}\smallskip \hrule height 1pt \smallskip
 
-The \textbf{moments} of a distribution are the expectation of powers of the r.v.
-$ \mu_l = E[X^l] = \sum_k x_k^l p(x_k) = \int x_l p(x)dx$
+\subsection{Random variables, distributions, and moments}
 
-\subsection{Common distributions}
+\begin{description}[topsep=0pt]
+	\item[Moments of a distribution] ~
+	\begin{itemize}[topsep=0pt]
+		\item The \textbf{moments} of a distribution are the expectation of powers of the r.v.
+		$ \mu_l = E[X^l] =  \begin{cases} \sum_k x_k^l p(x_k) \\  \int x^l p(x)dx \end{cases}$
+		\item \textbf{Variance} : $\sigma^2 = \mathbb{E}[(X-\mu)^2] =\mathbb{E}[X^2]-\mathbb{E}[X]^2$
+		\item \textbf{Skewness} - asymmetry parameter : $s = \frac{\mathbb{E}[(X-\mu)^3]}{\sigma^3} = \mathbb{E}\big[ \big(\frac{X-\mu}{\sigma} \big)^3\big]$
+		\item \textbf{Kurtosis} - measure of tail "weights" :  $\kappa = \mathbb{E}\big[ \big(\frac{X-\mu}{\sigma} \big)^4\big] -3 $ 		
+	\end{itemize}
+\end{description}
+ 
+\begin{description}[topsep=0pt]
+	\item[Covariance and correlation] ~
+\begin{itemize}[topsep=0pt]
+	\item \textbf{covariance}: $\operatorname{Cov}(X,Y) \equiv \mathbb{E}[(X-\mu_x)(Y-mu_y)]=\mathbb{E}[XY]-\mu_x \mu_y$
+	\item the \textbf{correlation} is proportional to the covariance: $\rho(X,Y) = \operatorname{Corr}(X,Y) \equiv \frac{\operatorname{Cov}(X,Y)}{\sqrt{\operatorname{Var}(X)\operatorname{Var}(Y)}} = \mathbb{E} \Big[ \Big(\frac{X-\mu_x}{\sigma_x}\Big)\Big(\frac{Y-\mu_y}{\sigma_y} \Big) \Big] $		
+\end{itemize}
+\end{description}
+
 \begin{description}[topsep=0pt]
 	\item[Common distributions] ~
 	\begin{itemize}[topsep=0pt]
@@ -167,21 +184,39 @@ $ \mu_l = E[X^l] = \sum_k x_k^l p(x_k) = \int x_l p(x)dx$
 			$\mu = np$, $\sigma^2 = npq$
 		\item \textbf{Gaussian distribution}:
 			$p(x) - \frac{1}{\sqrt{2 \pi \sigma ^2}} e^{- \frac{1}{2} \big(\frac{x-\mu}{\sigma} \big)^2}$ ,
-			$ \Phi(x) = Prob(Z<x) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{x} e^{-z^2/2} dz   $
+			$ \Phi(x) = Prob(Z<x) = \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^{x} e^{-z^2/2} dz   $ \\
+			Moments: $\begin{tabular}{ |c|l|c| } 
+				\hline
+				Order & Non-central moment & Central moment \\ 
+				\hline 
+				1 & $\mu$ & 0 \\ 
+			    2 & $\mu^2+\sigma^2$ & $\sigma^2$ \\ 
+				3 & $\mu^3+3\mu \sigma^2$ & 0 \\ 
+				4 & $\mu^4+6\mu^2 \sigma^2 + 3\sigma^4$ & $3 \sigma^4$ \\ 
+
+				\hline
+			\end{tabular}$
+		\item \textbf{Lognormal distribution}: $X=\operatorname{log}Y$ , $x=\operatorname{log}y$, then $g(y)=\frac{p(x)}{|\text{d}y/\text{d}x|} = \frac{1}{y \sqrt{2 \pi \sigma^2}} e^{- (\operatorname{log}y -\mu)^2/(2 \sigma^2) }$
+		\item \textbf{Poisson distribution}: $p(k;\lambda) = \frac{e^{-\lambda} \lambda^k}{k!}$. $\mu = \sigma^2 = \lambda$ . \\ 
+		   Probability of $k$ "arrivals" during interval $t$: $p(k;\lambda) = \frac{e^{-\lambda t} (\lambda t)^k}{k!}$ \\
+		   
+			
 	\end{itemize}
 \end{description}
 
-
-
-
-
-
-
-
-\textbf{Poisson distribution}
-
-
 \section{Week 2: Stochastic Processes}\smallskip \hrule height 1pt \smallskip
+
+
+\subsection{The Random Walk}
+
+\begin{description}[topsep=0pt]
+	\item[Random walk model] ~
+	\begin{itemize}[topsep=0pt]
+		\item $S_T = z_1 + z_2 + \cdots + z_T $ . Each increment is a random IID variable. $\mathbb{E}[z_t]=0$, $\mathbb{E}[z_t^2]=1$, $\mathbb{E}[z_t z_{t'}]=0$ if $t\neq t'$. $\operatorname{Var}(S_T)=T$
+		\item \textbf{Generalized random walk model}: $r_t = \sigma z_t + \mu$. $\mathbb{E}[r_t] = \mu$, $\mathbb{E}[(r_t-\mu)^2]=\sigma^2$.  $X_T \equiv \sum_{t=1}^{T}r_t$, $\mathbb{E}[X_T] = T\mu$, $\operatorname{VaR}(X_T) = T \sigma^2$.
+	\end{itemize}
+\end{description}
+
 
 \subsection{Time series models}
 
@@ -213,6 +248,51 @@ $ \mu_l = E[X^l] = \sum_k x_k^l p(x_k) = \int x_l p(x)dx$
 		
 	\end{itemize}	
 \end{description}
+
+\section{Week 4: Continuous-Time Finance}\smallskip \hrule height 1pt \smallskip
+
+\subsection{It\^{o} processes and It\^{o}'s lemma }
+
+\begin{description}[topsep=0pt]
+	\item[It\^{o}'s lemma] ~
+	\begin{itemize}[topsep=0pt]
+		\item It\^{o} process: $\text{d}X = a \text{d}t+b \text{d}B$\
+		\item $\text{d}F=\Big( \frac{\partial F}{\partial t}\text{d}t + \frac{\partial F}{\partial X} \text{d}X + \frac{1}{2} \frac{\partial^2 F}{\partial X^2} (\text{d}X)^2 + \cdots \Big) = \Big( \frac{\partial F}{\partial t}\text{d}t + \frac{\partial F}{\partial X} \text{d}X + \frac{1}{2} \frac{\partial^2 F}{\partial X^2} [b^2 \text{d}t] \Big) = \Big[ \frac{\partial F}{\partial t}\text{d}t + \frac{b^2}{2} \frac{\partial^2 F}{\partial X^2} \Big] \text{d}t + \Big[\frac{\partial F}{\partial X}\Big]  [ a \text{d}t+b \text{d}B]$ \\
+		$\text{d}F = \Big[ \frac{\partial F}{\partial t} +a \frac{\partial F}{\partial X} + \frac{b^2}{2} \frac{\partial^2 F}{\partial X^2} \Big] \text{d}t + b \frac{\partial F}{\partial X} \text{d}B  $
+		
+		\item Heuristics: expand and replace $(\text{d}B_t)^2 \rightarrow \text{d} t $,  $(\text{d}X_t)^2 \rightarrow b^2 \text{d}t$
+	\end{itemize}
+\end{description}
+
+\begin{description}[topsep=0pt]
+	\item[It\^{o} processes] ~
+	\begin{itemize}[topsep=0pt]
+		\item \textbf{Brownian motion with drift}: $\text{d}S_t = \mu \text{d}t+b \text{d}B_t$ \\
+		   $S_T = S_0 + \mu T + \sigma (B_T-B_0)$ 
+		\item \textbf{GBM with drift}:  $\text{d}S_t = \mu S_t \text{d}t+b S_t \text{d}B_t$ \\
+		   $\text{d}(log S_t)=(\mu-\frac{\sigma^2}{2}) \text{d}t + \sigma \text{d}B_t$ ,  $S_T = S_0 e^{(\mu -\frac{\sigma^2}{2})T + \sigma (B_T-B_0)}  $
+		\item \textbf{Ornstein–Uhlenbeck process}:  $\text{d}S_t = \lambda (\bar{S} -S_t) \text{d}t + \sigma \text{d}B_t$
+		\item \textbf{Cox–Ingersoll–Ross process}:  $ \text{d} \rho_t = \lambda ( \bar{\rho} - \rho_t) \text{d}t + \sigma \sqrt{\rho_t} \text{d} B_t$ \\
+		   Let $F=\sqrt{\rho}$ , $\frac{\partial F}{\partial \rho} = \frac{1}{2\sqrt{\rho}}$, $\frac{\partial^2F}{\partial \rho^2} = - \frac{1}{4} \rho ^{-\frac{3}{2}}$ \\
+		   $ \text{d}F = \Big( \frac{4 \lambda \bar{\rho} - \sigma^2}{8F} - \frac{1}{2} \lambda F \Big) \text{d}t + \frac{1}{2} \sigma \text{d}B_t$
+		
+		
+	\end{itemize}
+\end{description}
+
+\subsection{From SDE to PDE: The Black-Scholes equation}
+
+\begin{description}[topsep=0pt]
+	\item[Black-Scholes equation] ~
+	\begin{itemize}[topsep=0pt]
+		\item It\^{o} process: $\text{d}X = a \text{d}t+b \text{d}B$\
+		\item $\text{d}F=\Big( \frac{\partial F}{\partial t}\text{d}t + \frac{\partial F}{\partial X} \text{d}X + \frac{1}{2} \frac{\partial^2 F}{\partial X^2} (\text{d}X)^2 + \cdots \Big) = \Big( \frac{\partial F}{\partial t}\text{d}t + \frac{\partial F}{\partial X} \text{d}X + \frac{1}{2} \frac{\partial^2 F}{\partial X^2} [b^2 \text{d}t] \Big) = \Big[ \frac{\partial F}{\partial t}\text{d}t + \frac{b^2}{2} \frac{\partial^2 F}{\partial X^2} \Big] \text{d}t + \Big[\frac{\partial F}{\partial X}\Big]  [ a \text{d}t+b \text{d}B]$ \\
+		$\text{d}F = \Big[ \frac{\partial F}{\partial t} +a \frac{\partial F}{\partial X} + \frac{b^2}{2} \frac{\partial^2 F}{\partial X^2} \Big] \text{d}t + b \frac{\partial F}{\partial X} \text{d}B  $
+		
+		\item Heuristics: expand and replace $(\text{d}B_t)^2 \rightarrow \text{d} t $,  $(\text{d}X_t)^2 \rightarrow b^2 \text{d}t$
+	\end{itemize}
+\end{description}
+
 
 \section{Week 5: It\^{o} Calculus}\smallskip \hrule height 1pt \smallskip
 
@@ -249,6 +329,20 @@ $ \mu_l = E[X^l] = \sum_k x_k^l p(x_k) = \int x_l p(x)dx$
 		We can pull out $\sqrt{t}$,which is nonstochastic to get $t^2 E[z^4]$
 		, $E[z^4]$ is a well-known Gaussian integal that we use in the kurtosis=3.
 		\item Useful formula:  $E[e^{\alpha z + \beta}]  = e^{\alpha^2/2 + \beta}$
+	\end{itemize}
+\end{description}
+
+\begin{description}[topsep=0pt]
+	\item[Solutions to the diffusion equation] ~
+	\begin{itemize}[topsep=0pt]
+		\item \textbf{diffusion equation}: $ \frac{\partial p}{\partial t} - \frac{1}{2} \frac{\partial ^2 p}{\partial z^2} = 0 $
+		\item special solution $p(z,0)=f(z)$ then the general solution is: $ p(z,t) = \int p_0(z-w,t)f(w)dw $ , where 
+		$ p_0 = \frac{1}{\sqrt{2 \pi t}} e^{-\frac{z^2}{2t}} $
+		\item  $ \text{let } u=\frac{w-z}{\sqrt{t}}  \implies  du=\frac{dw}{\sqrt{t}} $
+		$ \implies  w=u \sqrt{t} + z $.  Now general solution can be computed as expectation of standard Gaussian: $p(z,t) = \mathbb{E}[f(\sqrt{t}u+z)]$ , where $u \sim N(0,1) $
+		\item \textbf{example}: $p(z,0) = z^2 $, $ f(z) = z^2 $, find $ p(z,t) $ \\
+		$p(z,t) = \int p_0(z-w,t)f(w)dw = \int  \frac{1}{\sqrt{2 \pi t}} e^{-\frac{(z-w)^2}{2t}} w^2 dw =  \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{-\frac{u^2}{2}} (u \sqrt{t} + z)^2 du =  \mathbb{E} [f(u \sqrt{t} + z)] =  \mathbb{E}[u^2t + 2u \sqrt{t}z + z^2] =  z^2+t $
+		
 	\end{itemize}
 \end{description}
 
