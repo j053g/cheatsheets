@@ -372,6 +372,33 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 \end{description}
 
 
+\subsection{Measures, martingales, and Monte Carlo}
+
+\begin{description}[topsep=0pt]
+	\item[Risk-neutral pricing] ~
+	\begin{itemize}[topsep=0pt]
+		\item  Under measure $Q$, expected return on risky assets equals risk-free rate: $\mathbb{E}_t^Q=\big[ \frac{\text{d}S_t}{S_t}\big] = r \text{d}t$
+		\item Heuristic: replace drift with risk-free rate to get risk-neutral process: $\mu \rightarrow r$
+		\item All (no-arbitrage) traded assets have discounted price process that are
+		martingales:  $e^{-rt}X_t = \mathbb{E}_t^Q[e^{-rT X_T}]$.  Example, call option: $C_t = e^{r(T-t)} \mathbb{E}_t^Q[\operatorname{max}(S_T-K,0)]$ 
+		\item Monte Carlo implementation: generate ensemble of equiprobable price
+		paths using \textbf{risk-neutral} drift and volatility parameters, compute terminal
+		payoffs, and take average of their discounted present value.
+		\item \textbf{example}: Let $S$  be the value of a stock that evolves according to GBM. A "cubic contract" has a payoff at expiration of $V_T=(S_T)^3$ . What is the value  of the contract at $V_0$ at $t=0$ :  $V_t = e^{-r(T-t)}\mathbb{E}^Q[V_T]$ setting $t=0$. Then: 
+		
+			
+			$V_T = S_T^3 = \left[S_0 e^{(r-\sigma^2/2)T + \sigma{\sqrt T}Z}\right]^3$
+			$V_T= \left[ S_0^3 e^{3(r-\sigma^2/2)T} \right] e^{3\sigma{\sqrt T}Z}, \quad Z \sim{\cal N}(0,1)$ \\
+			$V_t = e^{-r(T-t)}\mathbb{E}^Q[V_T]$
+			$= \left[ S_0^3 e^{-rT}e^{3(r-\sigma^2/2)T} \right] \mathbb{E}^Q\left[e^{ 3\sigma{\sqrt T}Z}\right]$ \\
+			$V_t= \left[S_0^3 e^{2rT} e^{-3\sigma^2T/2} \right] e^{9\sigma^2 T/2}$ 
+			$ S_0^3 e^{2rT+3\sigma^2T}$ .
+
+	
+		
+	\end{itemize}
+\end{description}
+
 
 \section{Week 7: Linear algebra of asset pricing}\smallskip \hrule height 1pt \smallskip
 
