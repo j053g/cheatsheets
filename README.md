@@ -30,6 +30,8 @@ Learn the mathematical foundations essential for financial engineering and quant
 ## [Derivatives Markets: Advanced Modeling and Strategies](https://www.edx.org/course/derivatives-markets-advanced-modeling-and-strategies)
 Financial derivatives are ubiquitous in global capital markets. Students will obtain a sophisticated understanding of valuation methods; tools for quantifying, hedging, and speculating on risk; and a basic familiarity with major markets and instruments.
 
+* [Cheatsheet](15.453x/15.453x_derivatives_markets.pdf)
+
 ## General Advice for MITx Proctored Final Exams
 
 I made this list as if I could give advise to myself before a final. I hope it you can be useful to you too:

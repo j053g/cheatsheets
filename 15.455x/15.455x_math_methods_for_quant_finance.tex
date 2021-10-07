@@ -393,7 +393,30 @@ Cheat sheet for MITx 15.455x Mathematical Methods for Quantitative Finance.
 			$= \left[ S_0^3 e^{-rT}e^{3(r-\sigma^2/2)T} \right] \mathbb{E}^Q\left[e^{ 3\sigma{\sqrt T}Z}\right]$ \\
 			$V_t= \left[S_0^3 e^{2rT} e^{-3\sigma^2T/2} \right] e^{9\sigma^2 T/2}$ 
 			$ S_0^3 e^{2rT+3\sigma^2T}$ .
+	
+	\end{itemize}
+\end{description}
 
+
+\begin{description}[topsep=0pt]
+	\item[Bond pricing] ~
+	\begin{itemize}[topsep=0pt]
+		\item  \textbf{one-factor Vasicek model}:  The short rate  evolves according to the Ornstein-Uhlenbeck process $\text{d} y_t = \alpha(\bar{y} - y_t) \text{d}t + \sigma \text{d}B,
+		$. The bond-pricing equation takes the form $\frac{\partial{V}}{\partial{t}}+\frac{\sigma^2}{2}\frac{\partial^2V}{\partial{y^2}}-yV+\alpha(\bar{y}-y)\frac{\partial{V}}{\partial{y}} = 0.
+		$.  At the boundary condition $V=1$ and $t=T$ since the zero-coupon bonds returns $\$1$ at maturity.
+		Find $V(t,y)$ as a funciton of $t$, $y$, and the maturity date $T$, and the constant parameters $\alpha$, $\sigma$ and $\bar{y}$. Ansatz $V=e^{f(t) - y g(t)}$
+	
+		
+		\item Then rearranging : $\left(\alpha g -1-\frac{\text{d}g}{\text{d}t}\right) \cdot y + \left(\frac{\text{d}f}{\text{d}t}+\frac{1}{2}\cdot \sigma^2g^2-\alpha\bar{y}g\right).
+		$
+		\item $0= \alpha g -1-\frac{\text{d}g}{\text{d}t} \hspace{5mm} \text{and} \hspace{5mm} 0 = \frac{\text{d}f}{\text{d}t}+\frac{1}{2}\cdot \sigma^2g^2-\alpha\bar{y}g
+		$  which is equivalent to: $\frac{\text{d}g}{\text{d}t}= \alpha g -1 \hspace{5mm} \text{and} \hspace{5mm} \frac{\text{d}f}{\text{d}t} = \alpha\bar{y}g - \frac{1}{2}\cdot \sigma^2g^2.
+		$
+		\item We impose the boundary conditions $f(T)=g(T)=0$:  
+		
+			$f(t) =  \bar{y} \left[-(T-t) + \frac{1}{\alpha}\left(1-e^{-\alpha(T-t)}\right) \right] 
+			+ \frac{\sigma^2}{4\alpha^3}\left[ 2\alpha(T-t) - 4\left(1- e^{-\alpha(T-t)}\right) +\left(1 - e^{-2\alpha(T-t)}\right)\right]$
+		
 	
 		
 	\end{itemize}

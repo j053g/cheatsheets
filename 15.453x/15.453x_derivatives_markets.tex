@@ -1,0 +1,237 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[plain]{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{palatino}
+\usepackage{multicol}
+\usepackage{blkarray}
+
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\usepackage{physics}
+\usepackage{latexsym, marvosym}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{dsfont}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=0pt}
+\usepackage{xfrac}
+\usepackage[pdftex,
+            pdfauthor={Jose},
+            pdftitle={Derivatives Markets: Advanced Modeling and Strategies},
+            pdfsubject={Cheat sheet for MITx 15.453x Derivatives Markets: Advanced Modeling and Strategies},
+            pdfkeywords={finance} {cheatsheet} {pdf} {cheat} {sheet} {formulas} {equations}
+            ]{hyperref}
+\usepackage[
+            open,
+            openlevel=2
+            ]{bookmark}
+\usepackage{relsize}
+\usepackage{rotating}
+
+% for monospace font https://tex.stackexchange.com/questions/50810/good-monospace-font-for-code-in-latex
+\usepackage{inconsolata}
+\usepackage[gen]{eurosym}
+
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+    \def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+    \copy0\kern-\wd0\mkern4mu\box0}} 
+            
+\newcommand{\noin}{\noindent}    
+\newcommand{\logit}{\textrm{logit}} 
+%\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}} 
+\newcommand{\corr}{\textrm{Corr}} 
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Bern}{\textrm{Bern}}
+\newcommand{\Bin}{\textrm{Bin}}
+\newcommand{\Beta}{\textrm{Beta}}
+\newcommand{\Gam}{\textrm{Gamma}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Pois}{\textrm{Pois}}
+\newcommand{\Unif}{\textrm{Unif}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\NBin}{\textrm{NBin}}
+\newcommand{\Hypergeometric}{\textrm{HGeom}}
+\newcommand{\HGeom}{\textrm{HGeom}}
+\newcommand{\Mult}{\textrm{Mult}}
+
+\geometry{top=.4in,left=.2in,right=.2in,bottom=.4in}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0ex}
+
+% -----------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\color{blue}\normalfont\normalsize\bfseries}
+{\color{blue}\thesection}{0em}{}
+\titleformat{\subsection}
+{\color{violet}\normalfont\normalsize\bfseries}
+{\color{violet}\thesection}{1em}{}
+% Comment out the above 5 lines for black and white
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{1pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    {\color{blue} \Large{\textbf{Derivatives Markets: Advanced Modeling and Strategies}}} 
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ATTRIBUTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\scriptsize
+
+Cheat sheet for MITx 15.453x Derivatives Markets: Advanced Modeling and Strategies.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN CHEATSHEET
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Week 1: Forward Contracts}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Forward contract basics}
+
+\begin{description}[topsep=0pt]
+	\item[Forward Contract] ~
+	\begin{itemize}[topsep=0pt]
+		\item A \textbf{forward contract} is an agreement between two counterparties to trade a pre-
+		specified amount of goods or securities at a pre-specified future date, $T$, for a pre-
+		specified price, $F_0$.
+		\item The \textbf{Profit/Loss (P/L)} at the contract maturity T for each counterparty is:
+		$P/L_{long} = N (S_T - F_0)$  , $P/L_{short} = N (F_0- S_T)$    
+		\item  Price of a zero coupong bond with face value $Z$:  $P=e^{-r_T T}Z $\\
+		$f(0,T_1,T_2)$ 	denotes the \textbf{forward rate} between time $T_1$ and $T_2$, as of
+		time 0 : $f(0,T_1,T_2) = \frac{T_2 r_{T_2} - T_1 r_{T_1}}{T_2-T_1}$  
+		\item Long forward positions are equivalent to borrowing and going long
+		in the underlying asset
+		\item Forward short positions are equivalent to lending and going short
+		the underlying		
+	\end{itemize}
+\end{description}
+ 
+ \subsection{Pricing formulas}
+ 
+ \begin{description}[topsep=0pt]
+ 	\item[Pricing formulas] ~
+ 	\begin{itemize}[topsep=0pt]
+ 		\item An \textbf{arbitrage opportunity} is a trading strategy that either
+ 		(1) Yields a positive profit today, and zero cash flows in the future; or
+ 		(2) Costs nothing today and yields a positive profit in the future
+ 		\item \textbf{The Law of One Price}:
+ 			Securities with identical payoffs must have the same price
+ 		\item \textbf{Stock}  with known dividend $D$ at time $t < T$ :  $F_0 = (P_{S,0} - De^{-rt}) e^{rT}$ \\
+ 		Stock with known dividend yield $q$: $F_0 = P_{S,0}e^{(r-q)T}$
+ 		\item \textbf{Bond}  with coupon $C$ at time $t < T$: $F_0 = (P_{B,0} - Ce^{-rt}) e^{rT}$ 
+ 		\item \textbf{Currencies}.  $r_\$$ ($ r_{\euro} $)  the USD (EUR) risk-free rate.  $S_t$ is the exchange rate (USD per EUR) at time $t$:  $F_0 = S_0 e^{(r_\$ - r_{\euro}) T}$
+ 	\end{itemize}
+ \end{description}
+ 
+  \begin{description}[topsep=0pt]
+ 	\item[Forward prices for commodities] ~
+ 	\begin{itemize}[topsep=0pt]
+ 		\item Forward price with lump-sum storage cost $U$:  $F_{0,T} = (S_0 + PV(U)) e^{rT}$
+ 		\item Forward price with proportional storage cost $u$: $F_{0,T} = S_0 e^{(r+u)T}$
+ 		\item Forward price with convenience yield $y$: $F_{0,T} = S_0 e^{(r-y)T}$
+ 		\item Forward price with proportional storage cost and convenience yield: $F_{0,T} = S_0 e^{(r+u-y)T}$
+ 		\item \textbf{Contango}  is a pattern of forward prices that increases with contract maturity
+ 		\item \textbf{Backwardation} is a pattern of forward prices over time that decreases with
+ 		contract maturity
+ 	\end{itemize}
+ \end{description}
+
+\subsection{Key concepts for hedging and speculating}
+  \begin{description}[topsep=0pt]
+	\item[Valuing a forward contract over time] ~
+	\begin{itemize}[topsep=0pt]
+		\item Suppose that $K=F_0$ the original delivery price, initial value of contract $f_0=0$.
+		\item Value of a \textbf{long} forward contract at time $t$ :  $f_{long,t,T} = (F_t-K) e ^{-r(T-t)}$ 
+		\item Value of a \textbf{short} forward contract at time $t$ :  $f_{short,t,T} = (K-F_t) e ^{-r(T-t)}$ 
+		\item \textbf{Basis} is the difference between the spot and forward price
+		of a security or commodity.
+		\item \textbf{Cross-hedging} involves using a contract type to hedge
+		which differs from the security or commodity being hedged.
+		\item The \textbf{hedge ratio} is the relative number of forward contracts to units
+		of the asset being hedged that maximizes the effectiveness of the hedge:  $N_S \mathbb{E}[\text{d}S] = N_F \mathbb{E}[\text{d}F] $ then: $\frac{N_S}{N_F} = \frac{\mathbb{E}[\text{d}F]}{\mathbb{E}[\text{d}S]}$. If long in spot then short in forwards, and vice versa.
+	\end{itemize}
+\end{description}
+ 
+\newpage
+
+\section{Recommended Resources} \smallskip \hrule height 1pt \smallskip
+
+\bigskip
+
+\begin{itemize}
+\item MITx 15.453x 
+Derivatives Markets: Advanced Modeling and Strategies \href{https://learning.edx.org/course/course-v1:MITx+15.435x+1T2021/home}{Lecture Slides}
+
+\item John Hull’s, Options Futures and Other Derivatives, 10th edition
+\item Bruce Tuckman and Angel Serrat, Fixed Income Securities; Tools for Today’s Markets, 3rd Edition (BTAS) 
+\item LaTeX File (\texttt{\href{https://github.com/j053g/cheatsheets/blob/main/15.453x/15.453x_derivatives_markets.tex}{github.com/j053g/cheatsheets/15.453x}})
+\end{itemize}
+
+\begin{center}
+	\emph{Last Updated \today}
+\end{center}
+
+\end{multicols*}
+
+
+
+\end{document}
