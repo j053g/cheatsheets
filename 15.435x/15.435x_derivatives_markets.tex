@@ -210,6 +210,59 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
 		of the asset being hedged that maximizes the effectiveness of the hedge:  $N_S \mathbb{E}[\text{d}S] = N_F \mathbb{E}[\text{d}F] $ then: $\frac{N_S}{N_F} = \frac{\mathbb{E}[\text{d}F]}{\mathbb{E}[\text{d}S]}$. If long in spot then short in forwards, and vice versa.
 	\end{itemize}
 \end{description}
+
+\section{Week 4: Options Strategies and Pricing Basics}\smallskip \hrule height 1pt \smallskip
+ 
+ 
+ \begin{description}[topsep=0pt]
+ 	\item[Option Basics] ~
+ 	\begin{itemize}[topsep=0pt]
+ 		\item Put call parity: $Put-Call=e^{-rT}(K-F_{0,T})$ 
+ 		\item For a non-dividend paying stock: $Put = Call + e^{-rT}K-S_0$
+ 		\item \textit{Important: This formula only holds for European options!}
+ 	\end{itemize}
+ \end{description}
+ 
+  
+ \begin{description}[topsep=0pt]
+ 	\item[Option Strategies] ~
+ 	\begin{itemize}[topsep=0pt]
+ 		\item Protective put:  Long put, Long stock. Payoff at  $T$: $ S_T + \operatorname{max}(K-S_T , 0) $
+ 		\item Covered call: Long stock, Short call.  Payoff at $T$: $ S_T – \operatorname{max}(S_T – K, 0) $
+ 		\item Bear spread: Short OTM put (strike $K_1$) and long ITM put ( $K_2 > K_1$)
+ 		\item Bull spreads: Long ITM call (strike $K_1$) and short OTM call ($ K_2 > K_1$)
+ 		\item Buttefly spread: Long 1 call with strike $K_0$, short 2 calls with strike $K_1$ and long 1 call with strike $K_2$, with $K_0<K_1<K_2$ and $K_1=\frac{K_0+K_2}{2}$
+ 		\item Straddle: Bet on high volatility. Long a call and a put with the same strike.
+ 		\item Strangle: Bet on high movements. Long put with $K_0$ and call with $K_1>K_0$ 
+ 		
+ 		
+ 	\end{itemize}
+ \end{description}
+ 
+ 
+  \begin{description}[topsep=0pt]
+ 	\item[Binomial trees] ~
+ 	\begin{itemize}[topsep=0pt]
+ 		\item One step: $S_0=\frac{E[S_1]}{1+R} = \frac{q S_{1,u}+(1-q)S_{1,d}}{1+R}$
+ 		\item Expected (gross) Return: $\mathbb{E}\Big[\frac{S_1}{S_0}\Big]=q \frac{S_{1,u}}{S_0}+(1-q)\frac{S_{1,d}}{S_0}$
+ 		\item Variance: $\mathbb{E}\Big[ \Big(\frac{S_1}{S_0} - \mathbb{E}\big[\frac{S_1}{S_0}\big] \Big)^2\Big]=q \Big(\frac{S_{1,u}}{S_0} -\mathbb{E}\big[\frac{S_1}{S_0}\big]\Big)^2+(1-q) \Big(\frac{S_{1,d}}{S_0}-\mathbb{E}\big[\frac{S_1}{S_0}\big]\Big)^2$
+ 		\item \textbf{replicating portfolio} :\\
+ 		$\Delta \cdot  S_{1,u} + B_0 e^r = V_{1,u}$ \\
+ 		$\Delta \cdot  S_{1,d} + B_0 e^r = V_{1,d}$
+ 		
+ 		Solution: $\Delta = \frac{ V_{1,u}- V_{1,d}}{S_{1,u}-S_{1,d}}$ , then we solve for $B_0=e^{-r}(V_{1,u}-\Delta \cdot  S_{1,u})$
+ 		no arbitrage $\implies V_0= \Delta  \cdot S_0 + B_0$
+ 		\item \textbf{risk neutral pricing}: we choose $q^*$ so that all risky assets earn the risk-free rate:
+ 		$q^*S_{1,u} e{-rT} + (1-q*)S_{1,d}e^{-rT}=S_0 \implies q^* = \frac{S_0 e^{rT}-S_{1,d}}{S_{1,u}-S_{1,d}}$ \\
+ 		$S_0 = \mathbb{E}^*[ e^{-rT} S_1]$. In general: $\textbf{Price of derivative} = \mathbb{E}^*[e^{-rT} \textbf{payoff}]$
+ 		\item American options.  Compare the value of immediate exercise with the value of the option. Exercise if an only if (for put): \textbf{ $K-S>$Discounted value of future distribution of payoffs if wait.}
+ 		\item \textbf{multi-step trees}:  $(i,j)$ time: $i=0,1,2,\dots, n$ ; node: $j=1,2,...n$ \\
+ 		with European derivative: $V^E_{i,j} = e^{-rh} \mathbb{E}^*[V^E_{i+1}|(i,j)]$, where $h=\frac{T}{n}$ \\
+ 		with American derivative: $V^A_{i,j} = \operatorname{max} \Big(g_{i,j}, e^{-rh} \mathbb{E}^*[V^A_{i+1}|(i,j)]\Big)$, where $h=\frac{T}{n}$ where $g_{i,j}$ is the payoff from the American derivative\\
+ 		
+ 		
+ 	\end{itemize}
+ \end{description}
  
 \newpage
 
@@ -225,6 +278,10 @@ Derivatives Markets: Advanced Modeling and Strategies \href{https://learning.edx
 \item Bruce Tuckman and Angel Serrat, Fixed Income Securities; Tools for Today’s Markets, 3rd Edition (BTAS) 
 \item LaTeX File (\texttt{\href{https://github.com/j053g/cheatsheets/blob/main/15.435x/15.435x_derivatives_markets.tex}{github.com/j053g/cheatsheets/15.435x}})
 \end{itemize}
+
+
+
+
 
 \begin{center}
 	\emph{Last Updated \today}
