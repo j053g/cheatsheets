@@ -253,7 +253,7 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
  		Solution: $\Delta = \frac{ V_{1,u}- V_{1,d}}{S_{1,u}-S_{1,d}}$ , then we solve for $B_0=e^{-r}(V_{1,u}-\Delta \cdot  S_{1,u})$
  		no arbitrage $\implies V_0= \Delta  \cdot S_0 + B_0$
  		\item \textbf{risk neutral pricing}: we choose $q^*$ so that all risky assets earn the risk-free rate:
- 		$q^*S_{1,u} e{-rT} + (1-q*)S_{1,d}e^{-rT}=S_0 \implies q^* = \frac{S_0 e^{rT}-S_{1,d}}{S_{1,u}-S_{1,d}}$ \\
+ 		$q^*S_{1,u} e^{-rT} + (1-q*)S_{1,d}e^{-rT}=S_0 \implies q^* = \frac{S_0 e^{rT}-S_{1,d}}{S_{1,u}-S_{1,d}}$ \\
  		$S_0 = \mathbb{E}^*[ e^{-rT} S_1]$. In general: $\textbf{Price of derivative} = \mathbb{E}^*[e^{-rT} \textbf{payoff}]$
  		\item American options.  Compare the value of immediate exercise with the value of the option. Exercise if an only if (for put): \textbf{ $K-S>$Discounted value of future distribution of payoffs if wait.}
  		\item \textbf{multi-step trees}:  $(i,j)$ time: $i=0,1,2,\dots, n$ ; node: $j=1,2,...n$ \\
