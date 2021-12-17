@@ -143,6 +143,11 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
 %%% BEGIN CHEATSHEET
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
+
+
+
 \section{Week 1: Forward Contracts}\smallskip \hrule height 1pt \smallskip
 
 \subsection{Forward contract basics}
@@ -188,7 +193,7 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
  		\item Forward price with lump-sum storage cost $U$:  $F_{0,T} = (S_0 + PV(U)) e^{rT}$
  		\item Forward price with proportional storage cost $u$: $F_{0,T} = S_0 e^{(r+u)T}$
  		\item Forward price with convenience yield $y$: $F_{0,T} = S_0 e^{(r-y)T}$
- 		\item Forward price with proportional storage cost and convenience yield: $F_{0,T} = S_0 e^{(r+u-y)T}$
+ 		\item Forward price with proportional storage cost $u$ and convenience yield $y$: $F_{0,T} = S_0 e^{(r+u-y)T}$
  		\item \textbf{Contango}  is a pattern of forward prices that increases with contract maturity
  		\item \textbf{Backwardation} is a pattern of forward prices over time that decreases with
  		contract maturity
@@ -210,6 +215,82 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
 		of the asset being hedged that maximizes the effectiveness of the hedge:  $N_S \mathbb{E}[\text{d}S] = N_F \mathbb{E}[\text{d}F] $ then: $\frac{N_S}{N_F} = \frac{\mathbb{E}[\text{d}F]}{\mathbb{E}[\text{d}S]}$. If long in spot then short in forwards, and vice versa.
 	\end{itemize}
 \end{description}
+
+
+\section{Week 2: Futures and Swaps Contracts}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Futures}
+
+\begin{description}[topsep=0pt]
+	\item[Forward Contract] ~
+	\begin{itemize}[topsep=0pt]
+		\item Daily settlement of gains and losses and have to maintain a minimum balance in a margin account.
+		\item If margin balance falls below the maintenance margin, so the investors has
+		to deposit into the account to restore the initial margin requirement.
+	\end{itemize}
+\end{description}
+
+\subsection{Swaps}
+
+\begin{description}[topsep=0pt]
+	\item[Swap Pricing] ~
+	\begin{itemize}[topsep=0pt]
+		\item \textbf{Interest Rate Swap:} Given spot yield curve $s_1, s_2, \dots, s_N$ the coupon rate of the swap solves 
+		$ F =\frac{cF}{(1+s_1)} + \frac{cF}{(1+s_2)^2} + \dots + \frac{(1+c)F}{(1+s_N)^N} $, solving for $c$: $c=\frac{1-B_N}{\sum_{i=1}^{N}B_i}$, where $B_i=\frac{1}{(1+s_i)^i}$ is the discount factor for period $i$.
+		\item \textbf{Currency Swap}: The currency swap rate equals the current exchange rate multiplied by the
+		ratio of the relative risk-free borrowing costs in the two currencies. Example: US firm pays bank  $1M \euro$ on $T = 0.5, 1, \dots , 2.5$. US Bank firm $1M \cdot K\$ $  then:   $K = S_0 \frac{e^{-0.5r_{\euro}}+e^{-1r_{\euro}}+\dots +e^{-2.5r_{\euro}}}{e^{-0.5r_{\$}}+e^{-1r_{\$}}+\dots +e^{-2.5r_{\$}}}$
+		
+	\end{itemize}
+\end{description}
+
+
+\section{Week 3 – Duration and convexity-based strategies for risk management}\smallskip \hrule height 1pt \smallskip
+
+\subsection{Duration and Convexity}
+
+\begin{description}[topsep=0pt]
+	\item[Duration and Convexity] ~
+	\begin{itemize}[topsep=0pt]
+	\item {\bf Modified Duration (MD) for discount bond} $ P_t=\frac{1}{(1+y)^t} $, then $ MD(P_t) = -\frac{1}{P_t}\frac{dP_t}{dy} = \frac{t}{1+y}$
+		\item {\bf Macaulay Duration} is the weighted average term to maturity  $ D = \sum_{t=1}^{T} \left(   \frac{PV(CF_T)}{P}  t \right)  =   \frac{1}{P}\sum_{t=1}^{T} \left(  \frac{CF_t}{(1+y)^t} t \right)  $
+		\item {\bf Modified Duration} measures bond's interest rate risk by its relative price change with respect
+		to a unit change in yield (with a negative sign):  $ D_M =  -\frac{1}{P}\frac{dP}{dy}  = \frac{D}{1+y}  $
+		\item {\bf Convexity (CX)} measure the curvature of the bond price as function of the yield:  $ CX =  \frac{1}{2}\frac{1}{P}\frac{d^2B}{dy^2}  $ \\
+		$$ CX = \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} \frac{t (t+1) CF_t}{(1+t)^t} =  \frac{1}{2} \frac{1}{P} \frac{1}{(1+y)^2} \sum_{t=1}^{T} PV(CF_t) t (t+1)  $$
+		\item {\bf Taylor series approximation of bond price changes}  $ \Delta P \approx  P \left(  -D_M  \cdot \Delta y + CX \cdot ( \Delta y)^2 \right)    $
+		\item {\bf Dollar Duration:} Dollar duration is the modified duration multiplied by the price: $D_d = D_M \cdot P$. It's useful for hedging strategies and for understanding risk of zero NPV portolios.
+	\end{itemize}
+\end{description}
+
+\subsection{Hedging}
+
+\begin{description}[topsep=0pt]
+	\item[Delta/Gamma Hedging] ~
+	\begin{itemize}[topsep=0pt]
+		\item A \textbf{delta neutral} portfolio equates the hedge ratio of assets and liabilities : $P_{A}D_{M,A} = P_{L}D_{M,L}$
+		\item A \textbf{Gamma neutral } portfolio is delta neutral and equates gammas of assets and liabilities. Example hedge Liability $L$ with $D_{M,L}$ and $C_L$, with two assets $A_1, A_2$ with $D_{M,1}  C_1$ and  $D_{M,2}, C_2$ then : 
+		\\ equate delta:  $L D_{M,L} = A_1 D_{M,1}+ A_2 D_{M,2}$ 
+		\\ equate gamma: $L C_L = A_1 C_1 + A_2 C_2$, i.e. solve system to find $A_1$, $A_2$:	
+		$
+		\begin{pmatrix}
+			D_{M,1} & D_{M,2}  \\
+			C_1 & C_2 \\						
+		\end{pmatrix} \cdot 
+		\begin{pmatrix}
+			A_1 \\
+			A_2 \\							
+		\end{pmatrix}	
+		=
+		\begin{pmatrix}
+			L D_{M,L}\\
+			L C_L							
+		\end{pmatrix}
+		$
+		\item \textbf{Swap Dollar Duration} for fix receiver: $D_{dollar,rec}=P_{fix}D_{M,fix} - P_{flt}D_{eff,flt}$,  The effective duration of a (pure) floating rate bond is the time until the next reset, divided by $1 + \frac{Y_{APR}}{k}$,  $k$ is the number of compounding periods in a year, i.e.: $D_{eff,flt} = \frac{t_{nextreset}}{1 + \frac{Y_{APR}}{k}}$, for a new swap $P_{flt}=P{fix}=1$, then:
+		\\$D_{dolar,rec}=D_{M,fix} - D_{eff,flt}$
+	\end{itemize}
+\end{description}
+
 
 \section{Week 4: Options Strategies and Pricing Basics}\smallskip \hrule height 1pt \smallskip
  
@@ -247,10 +328,10 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
  		\item Expected (gross) Return: $\mathbb{E}\Big[\frac{S_1}{S_0}\Big]=q \frac{S_{1,u}}{S_0}+(1-q)\frac{S_{1,d}}{S_0}$
  		\item Variance: $\mathbb{E}\Big[ \Big(\frac{S_1}{S_0} - \mathbb{E}\big[\frac{S_1}{S_0}\big] \Big)^2\Big]=q \Big(\frac{S_{1,u}}{S_0} -\mathbb{E}\big[\frac{S_1}{S_0}\big]\Big)^2+(1-q) \Big(\frac{S_{1,d}}{S_0}-\mathbb{E}\big[\frac{S_1}{S_0}\big]\Big)^2$
  		\item \textbf{replicating portfolio} :\\
- 		$\Delta \cdot  S_{1,u} + B_0 e^r = V_{1,u}$ \\
- 		$\Delta \cdot  S_{1,d} + B_0 e^r = V_{1,d}$
+ 		$\Delta \cdot  S_{1,u} + B_0 e^{rT} = V_{1,u}$ \\
+ 		$\Delta \cdot  S_{1,d} + B_0 e^{rT} = V_{1,d}$
  		
- 		Solution: $\Delta = \frac{ V_{1,u}- V_{1,d}}{S_{1,u}-S_{1,d}}$ , then we solve for $B_0=e^{-r}(V_{1,u}-\Delta \cdot  S_{1,u})$
+ 		Solution: $\Delta = \frac{ V_{1,u}- V_{1,d}}{S_{1,u}-S_{1,d}}$ , then we solve for $B_0=e^{-rT}(V_{1,u}-\Delta \cdot  S_{1,u})$
  		no arbitrage $\implies V_0= \Delta  \cdot S_0 + B_0$
  		\item \textbf{risk neutral pricing}: we choose $q^*$ so that all risky assets earn the risk-free rate:
  		$q^*S_{1,u} e^{-rT} + (1-q*)S_{1,d}e^{-rT}=S_0 \implies q^* = \frac{S_0 e^{rT}-S_{1,d}}{S_{1,u}-S_{1,d}}$ \\
@@ -278,8 +359,6 @@ Derivatives Markets: Advanced Modeling and Strategies \href{https://learning.edx
 \item Bruce Tuckman and Angel Serrat, Fixed Income Securities; Tools for Today’s Markets, 3rd Edition (BTAS) 
 \item LaTeX File (\texttt{\href{https://github.com/j053g/cheatsheets/blob/main/15.435x/15.435x_derivatives_markets.tex}{github.com/j053g/cheatsheets/15.435x}})
 \end{itemize}
-
-
 
 
 
