@@ -344,6 +344,52 @@ Cheat sheet for MITx 15.435x Derivatives Markets: Advanced Modeling and Strategi
  		
  	\end{itemize}
  \end{description}
+
+
+\section{Week 5 – Black-Scholes-Merton and the Greeks}\smallskip \hrule height 1pt \smallskip
+
+
+\begin{description}[topsep=0pt]
+	\item[Multi-step Binomial Trees] ~
+	\begin{itemize}[topsep=0pt]
+		\item Chop interval $[0,T]$ into $n$ little intervals of time $h=\frac{T}{n}$.
+		\item $u = e^{ \sigma h} ; d= \frac{1}{u};$ and 	$q^* = \frac{e^{r h}-d}{u-d}$.
+		\item BSM:  $C(S,K,T-t,r,\sigma)=S N(d_1)-Ke^{-r(T-t)}N(d_2)$ \\
+		      $d_1 = \frac{\operatorname{ln}(\frac{S}{K})+(r+\frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}$, $d_2 = d_1 - \sigma \sqrt{T-t}$ \\
+		      $P(S,K,T-t,r,\sigma)=Ke^{-r(T-t)}N(-d_2)-S N(-d_1)$ \\
+		\item BSM with \textbf{knwon} dividend.  Define $S*=S-PV(D)$, $PV(D)=$ present value of Dividends before Expiration.   Use BSM Formula with $S^*$ instead of $S$.
+		\item BSM with \textbf{knwon} dividend yield $\delta$ :
+		  \\ $C=S e^{-\delta (T-t)}N(d_1)-Ke^{-r(T-t)}N(d_2)$ 
+		  \\ $P=Ke^{-r(T-t)}N(-d_2) - S e^{-\delta (T-t)}N(-d_1)$
+		  \\  $d_1 = \frac{\operatorname{ln}(\frac{S}{K})+(r-\delta+\frac{1}{2}\sigma^2)(T-t)}{\sigma \sqrt{T-t}}$, $d_2 = d_1 - \sigma \sqrt{T-t}$ 
+		\item \textbf{interpretation} of BSM with $n$ calls or puts\\
+		$nc = \underbrace{nS_0N(d_1)}_{\text{value of stock}}-\underbrace{nKe^{-rT}N(d_2)}_{\text{value of bonds}}$, $\Delta_c=N(d_1)
+		$
+		\\ $np = \underbrace{nKe^{-rT}N(-d_2)}_{\text{value of bonds}}-\underbrace{nS_0N(-d_1)}_{\text{value of stock}}$, $\Delta_p=-N(-d_1)
+		$
+		\\ $\text{Number of shares} = \frac{\text{value of stock}}{S_0}
+		$
+		
+		
+		
+		
+	\end{itemize}
+\end{description}
+
+
+\section{Week 9 – Credit risk}\smallskip \hrule height 1pt \smallskip
+
+\subsection{The Merton Model}
+
+\begin{description}[topsep=0pt]
+	\item[The Merton Model] ~
+	\begin{itemize}[topsep=0pt]
+		\item Today is $t=0$ and consider a firm with current assets $V_0=E_0+D_0$
+		\item The payoff to equity holders is then the one of a call option
+		\item  If we denote $E_0$ the value of equity today
+		                           
+	\end{itemize}
+\end{description}
  
 \newpage
 

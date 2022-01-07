@@ -30,13 +30,13 @@ Learn the mathematical foundations essential for financial engineering and quant
 ## [Derivatives Markets: Advanced Modeling and Strategies](https://www.edx.org/course/derivatives-markets-advanced-modeling-and-strategies)
 Financial derivatives are ubiquitous in global capital markets. Students will obtain a sophisticated understanding of valuation methods; tools for quantifying, hedging, and speculating on risk; and a basic familiarity with major markets and instruments.
 
-* [Cheatsheet](15.453x/15.453x_derivatives_markets.pdf)
+* [Cheatsheet](15.435x/15.435x_derivatives_markets.pdf)
 
 ## General Advice for MITx Proctored Final Exams
 
 I made this list as if I could give advise to myself before a final. I hope it you can be useful to you too:
 
-* Make sure to read all instructions, spare no detail. Proctored software needs good badwidth and a quiet environment, make sure you don't add extra pressure to yourself by not having the right environment.  Make sure to enable your phone as hotspot connected to a portable charger in order to have an alternate internet connection in case something goes wrong with your router/internet provider/electricity.
+* Make sure to read all instructions, spare no detail. Proctored software needs good badwidth and a quiet environment, make sure you don't add extra pressure to yourself by not having the right environment. 
 * Make sure to review all recitations and make sure you can solve all of them without aid and without looking at the professor solution before the final. Polish areas where your knowledge is not internalized.
 * Same applies for all problem sets.
 * If possible, review previous finals for equivalent courses at [OCW](https://ocw.mit.edu/).
